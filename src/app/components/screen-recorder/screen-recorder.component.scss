@@ -1,0 +1,19 @@
+.screen-recorder {
+  max-width: 25rem;
+  margin: auto;
+  text-align: center;
+
+  &__video {
+    visibility: hidden;
+  }
+
+  &__description {
+    font-size: .75rem;
+  }
+
+  &__button {
+    margin-top: 0.5rem;
+    display: block;
+    width: 100%;
+  }
+}

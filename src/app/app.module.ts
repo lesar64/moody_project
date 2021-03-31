@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ScreenRecorderComponent } from './components/screen-recorder/screen-recorder.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ScreenRecorderComponent
   ],
   imports: [
     BrowserModule,

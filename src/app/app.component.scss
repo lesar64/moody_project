@@ -1,0 +1,19 @@
+.app {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 7rem 1.5rem 0;
+
+  &__title {
+    text-align: center;
+  }
+
+  &__description {
+    margin-top: 1rem;
+    text-align: center;
+    opacity: .5;
+  }
+
+  &__content {
+    margin-top: 4rem;
+  }
+}

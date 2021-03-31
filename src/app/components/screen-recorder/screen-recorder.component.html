@@ -1,0 +1,14 @@
+
+<div class="screen-recorder">
+  <p class="screen-recorder__description">To start the emotion detection, please click on start.</p>
+
+  <ng-container [ngSwitch]="sharing">
+    <button class="screen-recorder__button"
+            *ngSwitchCase="true"
+            (click)="stopRecording()">Stop recording</button>
+
+    <button class="screen-recorder__button"
+            *ngSwitchDefault
+            (click)="startRecording()">Start recording</button>
+  </ng-container>
+</div>
