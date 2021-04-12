@@ -1,0 +1,12 @@
+
+:host {
+  display: block;
+  margin-top: 4rem;
+}
+
+.active-emotion {
+  &__table {
+    width: 100%;
+    margin-top: 3rem;
+  }
+}

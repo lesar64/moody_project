@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ScreenRecorderComponent } from './components/screen-recorder/screen-recorder.component';
 
-const routes: Routes = [{
-  path: '',
-  component: ScreenRecorderComponent,
-}];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

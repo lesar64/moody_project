@@ -1,7 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
-import { FaceDetectionService } from '../../services/face-detection.service';
-import * as faceapi from 'face-api.js';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-screen-recorder',
@@ -12,11 +9,11 @@ export class ScreenRecorderComponent implements OnInit {
 
   @ViewChild('videoref') videoRef: ElementRef;
 
-  public readonly Math = Math;
-  public sharing: boolean = false;
-  public faceDetections$?: Observable<faceapi.WithFaceExpressions<{ detection: faceapi.FaceDetection; }>[]>;
+  @Output() recording: EventEmitter<{ type: 'start' | 'stop', videoRef?: ElementRef }> = new EventEmitter();
 
-  constructor(private faceDetection: FaceDetectionService) {}
+  public sharing: boolean = false;
+
+  constructor() {}
 
   ngOnInit(): void { }
 
@@ -25,11 +22,8 @@ export class ScreenRecorderComponent implements OnInit {
       audio: false,
     });
 
-    if (!this.faceDetections$) {
-      this.faceDetections$ = this.faceDetection.detectAll(this.videoRef.nativeElement);
-    }
-
     this.sharing = true;
+    this.recording.next({ type: 'start', videoRef: this.videoRef });
   }
 
   public stopRecording(): void {
@@ -37,7 +31,8 @@ export class ScreenRecorderComponent implements OnInit {
     tracks.forEach(track => track.stop());
 
     this.videoRef.nativeElement.srcObject = null;
-    this.sharing = false;
-  }
 
+    this.sharing = false;
+    this.recording.next({ type: 'stop' });
+  }
 }

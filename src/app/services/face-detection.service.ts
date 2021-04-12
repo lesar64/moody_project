@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { interval, Observable } from 'rxjs';
+import { interval, Observable, Subject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import * as faceapi from 'face-api.js';
 
@@ -24,7 +24,7 @@ export class FaceDetectionService {
             return detectedFaces;
           })
         })
-      })
+      }),
     );
   }
 }

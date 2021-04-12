@@ -4,6 +4,9 @@
   <p class="app__description">A Project in Fulfillment of the Module NET02 – Collaborative Innovation Networks</p>
 
   <div class="app__content">
-    <router-outlet></router-outlet>
+    <app-screen-recorder (recording)="onScreenRecordChange($event)"></app-screen-recorder>
+
+    <app-active-emotions [faceDetections]="faceDetections$ | async"></app-active-emotions>
+    <app-emotion-rollercoaster [faceDetections]="faceDetections$"></app-emotion-rollercoaster>
   </div>
 </div>

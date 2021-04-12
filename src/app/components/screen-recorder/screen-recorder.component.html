@@ -7,33 +7,10 @@
   <ng-container [ngSwitch]="sharing">
     <button class="screen-recorder__button"
             *ngSwitchCase="true"
-            (click)="stopRecording()">Stop recording</button>
+            (click)="stopRecording()">Stop</button>
 
     <button class="screen-recorder__button"
             *ngSwitchDefault
-            (click)="startRecording()">Start recording</button>
+            (click)="startRecording()">Start</button>
   </ng-container>
 </div>
-
-<table class="screen-recorder__table">
-  <tr>
-    <th>Person</th>
-    <th>Angry</th>
-    <th>Disgusted</th>
-    <th>Happy</th>
-    <th>Fearful</th>
-    <th>Neutral</th>
-    <th>Sad</th>
-    <th>Surprised</th>
-  </tr>
-  <tr *ngFor="let detection of (faceDetections$ | async); let i = index">
-    <td>Person {{ i + 1 }}</td>
-    <td [innerHTML]="Math.round(detection.expressions.angry * 100) / 100"></td>
-    <td [innerHTML]="Math.round(detection.expressions.disgusted * 100) / 100"></td>
-    <td [innerHTML]="Math.round(detection.expressions.happy * 100) / 100"></td>
-    <td [innerHTML]="Math.round(detection.expressions.fearful * 100) / 100"></td>
-    <td [innerHTML]="Math.round(detection.expressions.neutral * 100) / 100"></td>
-    <td [innerHTML]="Math.round(detection.expressions.sad * 100) / 100"></td>
-    <td [innerHTML]="Math.round(detection.expressions.surprised * 100) / 100"></td>
-  </tr>
-</table>
