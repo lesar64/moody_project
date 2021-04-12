@@ -6,7 +6,7 @@
   <div class="app__content">
     <app-screen-recorder (recording)="onScreenRecordChange($event)"></app-screen-recorder>
 
-    <app-active-emotions [faceDetections]="faceDetections$ | async"></app-active-emotions>
+    <app-active-emotions [faceDetections]="faceDetections$ | async" [videoRef]="(recordChange$ | async)?.videoRef"></app-active-emotions>
     <app-emotion-rollercoaster [faceDetections]="faceDetections$"></app-emotion-rollercoaster>
   </div>
 </div>

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ScreenRecorderComponent } from './components/screen-recorder/screen-recorder.component';
 import { EmotionRollercoasterComponent } from './components/emotion-rollercoaster/emotion-rollercoaster.component';
 import { ActiveEmotionsComponent } from './components/active-emotions/active-emotions.component';
+import { VideoCaptureComponent } from './components/video-capture/video-capture.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { ActiveEmotionsComponent } from './components/active-emotions/active-emo
     ScreenRecorderComponent,
     EmotionRollercoasterComponent,
     ActiveEmotionsComponent,
+    VideoCaptureComponent,
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,7 @@ export class AppComponent {
         case 'start': return this.faceDetection.detectAll(e.videoRef.nativeElement);
         default: return NEVER
       }
-    })
+    }),
   );
 
   constructor(private faceDetection: FaceDetectionService) {}

@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
+import * as faceapi from 'face-api.js';
 
 @Component({
   selector: 'app-active-emotions',
@@ -7,7 +8,8 @@ import { Component, Input } from '@angular/core';
 })
 export class ActiveEmotionsComponent {
 
-  @Input() faceDetections: any[];
+  @Input() faceDetections?: faceapi.WithFaceExpressions<{ detection: faceapi.FaceDetection; }>[];
+  @Input() videoRef?: ElementRef;
 
   constructor() { }
 
