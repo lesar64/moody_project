@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { interval, Observable, Subject } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import * as faceapi from 'face-api.js';
 
 @Injectable({
@@ -25,6 +25,16 @@ export class FaceDetectionService {
           })
         })
       }),
+      map((detections) => detections.map((detection) => {
+        return {
+          ...detection,
+          aggregated: {
+            negative: detection.expressions.sad + detection.expressions.disgusted + detection.expressions.fearful + detection.expressions.angry,
+            netural: detection.expressions.neutral,
+            positive: detection.expressions.happy + detection.expressions.surprised,
+          },
+        }
+      })),
     );
   }
 }

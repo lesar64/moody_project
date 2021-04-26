@@ -6,6 +6,8 @@
   <div class="app__content">
     <app-screen-recorder (recording)="onScreenRecordChange($event)"></app-screen-recorder>
 
+    <app-mood-barometer [value]="averageValue$ | async"></app-mood-barometer>
+
     <app-active-emotions [faceDetections]="faceDetections$ | async" [videoRef]="(recordChange$ | async)?.videoRef"></app-active-emotions>
     <app-emotion-rollercoaster [faceDetections]="faceDetections$"></app-emotion-rollercoaster>
   </div>

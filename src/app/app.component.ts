@@ -2,7 +2,7 @@ import { Component, ElementRef } from '@angular/core';
 import { NEVER, Observable, Subject } from 'rxjs';
 import { FaceDetectionService } from './services/face-detection.service';
 import * as faceapi from 'face-api.js';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +19,21 @@ export class AppComponent {
         case 'start': return this.faceDetection.detectAll(e.videoRef.nativeElement);
         default: return NEVER
       }
+    }),
+  );
+
+  public averageValue$ = this.faceDetections$.pipe(
+    // Calculate score per person
+    map((detections) => detections.map((detection) => {
+      return (<any>detection).aggregated.positive - (<any>detection).aggregated.negative;
+    })),
+    // Calculate mean
+    map((scores) => {
+      let sum = 0;
+      (<number[]>scores).forEach(score => {
+        sum += score;
+      });
+      return sum / (<number[]>scores).length;
     }),
   );
 
