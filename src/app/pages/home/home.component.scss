@@ -1,0 +1,44 @@
+
+.home {
+  display: flex;
+  height: calc(100vh - 3rem);
+  width: 100%;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-color: #0b0c10;
+
+  &__title {
+    color: #45a29e;
+    font-size: 5rem;
+  }
+
+  &__description {
+    color: #c5c6c7;
+    max-width: 45rem;
+    margin-top: 1.5rem;
+    line-height: 1.5rem;
+  }
+
+  &__button {
+    cursor: pointer;
+
+    margin-top: 2rem;
+    transition-duration: 0.15s;
+
+    background-color: transparent;
+    border: 2px solid #45A29E;
+    color: #c5c6c7;
+    padding: 1rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+
+    &:hover {
+      background-color: #45A29E;
+    }
+  }
+}

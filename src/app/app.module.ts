@@ -8,6 +8,8 @@ import { EmotionRollercoasterComponent } from './components/emotion-rollercoaste
 import { ActiveEmotionsComponent } from './components/active-emotions/active-emotions.component';
 import { VideoCaptureComponent } from './components/video-capture/video-capture.component';
 import { MoodBarometerComponent } from './components/mood-barometer/mood-barometer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { MoodBarometerComponent } from './components/mood-barometer/mood-baromet
     ActiveEmotionsComponent,
     VideoCaptureComponent,
     MoodBarometerComponent,
+    HeaderComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
