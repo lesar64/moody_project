@@ -9,7 +9,6 @@
   <p class="app__description">A Project in Fulfillment of the Module NET02 – Collaborative Innovation Networks</p>
 
   <div class="app__content">
-    <app-screen-recorder (recording)="onScreenRecordChange($event)"></app-screen-recorder>
     <app-mood-barometer [value]="averageValue$ | async"></app-mood-barometer>
 
     <app-active-emotions [faceDetections]="faceDetections$ | async" [videoRef]="(recordChange$ | async)?.videoRef"></app-active-emotions>
