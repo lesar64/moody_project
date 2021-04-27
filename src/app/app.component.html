@@ -1,17 +1,6 @@
 <app-header></app-header>
+<app-screen-recorder></app-screen-recorder>
 
-<router-outlet></router-outlet>
-
-
-
-<!-- <div class="app">
-  <h1 class="app__title">Emotion Detector</h1>
-  <p class="app__description">A Project in Fulfillment of the Module NET02 – Collaborative Innovation Networks</p>
-
-  <div class="app__content">
-    <app-mood-barometer [value]="averageValue$ | async"></app-mood-barometer>
-
-    <app-active-emotions [faceDetections]="faceDetections$ | async" [videoRef]="(recordChange$ | async)?.videoRef"></app-active-emotions>
-    <app-emotion-rollercoaster [faceDetections]="faceDetections$"></app-emotion-rollercoaster>
-  </div>
-</div> -->
+<div class="app__body">
+  <router-outlet></router-outlet>
+</div>

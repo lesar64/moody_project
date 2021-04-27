@@ -1,8 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
-import { NEVER, Observable, Subject } from 'rxjs';
-import { FaceDetectionService } from './services/face-detection.service';
-import * as faceapi from 'face-api.js';
-import { map, switchMap } from 'rxjs/operators';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -11,35 +7,4 @@ import { map, switchMap } from 'rxjs/operators';
 })
 export class AppComponent {
   public title = 'COINs –  Live Emotion Detection';
-
-  public recordChange$: Subject<{ type: 'start' | 'stop', videoRef: ElementRef }> = new Subject();
-  public faceDetections$?: Observable<faceapi.WithFaceExpressions<{ detection: faceapi.FaceDetection; }>[]> = this.recordChange$.pipe(
-    switchMap(e => {
-      switch (e.type) {
-        case 'start': return this.faceDetection.detectAll(e.videoRef.nativeElement);
-        default: return NEVER
-      }
-    }),
-  );
-
-  public averageValue$ = this.faceDetections$.pipe(
-    // Calculate score per person
-    map((detections) => detections.map((detection) => {
-      return (<any>detection).aggregated.positive - (<any>detection).aggregated.negative;
-    })),
-    // Calculate mean
-    map((scores) => {
-      let sum = 0;
-      (<number[]>scores).forEach(score => {
-        sum += score;
-      });
-      return sum / (<number[]>scores).length;
-    }),
-  );
-
-  constructor(private faceDetection: FaceDetectionService) {}
-
-  public onScreenRecordChange(event: { type: 'start' | 'stop', videoRef: ElementRef }): void {
-    this.recordChange$.next(event);
-  }
 }

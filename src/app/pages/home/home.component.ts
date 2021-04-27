@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ScreenRecorderService } from 'src/app/services/screen-recorder.service';
 
 @Component({
   selector: 'app-home',
@@ -7,12 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private screenRecorder: ScreenRecorderService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  public onScreenRecordChange(event: any): void {
-
+  trackNow(): void {
+    this.screenRecorder.startRecording().then(() => {
+      this.router.navigateByUrl('barometer');
+    });
   }
+
 }
