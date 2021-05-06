@@ -1,2 +1,20 @@
-<div class="barometer"
-     [innerHTML]="value || 'Hang on, we are on it...'"></div>
+<div class="barometer__value"
+     [innerHTML]="roundedValue || 'Hang on, we are on it...'"></div>
+
+
+<div class="barometer">
+  <div class="barometer__bar">
+    <div class="barometer__sad"
+         [class.barometer__sad--on]="value < 0"
+         [style.width]="sadWidth"></div>
+    <div class="barometer__happy"
+         [class.barometer__happy--on]="value > 0"
+         [style.width]="happyWidth"></div>
+  </div>
+
+  <div class="barometer__labels">
+    <p>Sad</p>
+    <p>Neutral</p>
+    <p>Happy</p>
+  </div>
+</div>
