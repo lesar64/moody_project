@@ -11,6 +11,7 @@ import { MoodBarometerComponent } from './pages/mood-barometer/mood-barometer.co
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BarometerComponent } from './components/barometer/barometer.component';
+import { AnalyticsComponent } from './pages/analytics/analytics.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { BarometerComponent } from './components/barometer/barometer.component';
     HeaderComponent,
     HomeComponent,
     BarometerComponent,
+    AnalyticsComponent,
   ],
   imports: [
     BrowserModule,

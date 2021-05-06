@@ -35,6 +35,11 @@ export class ScreenRecorderService {
       audio: false,
     });
 
+    this.videoRef.nativeElement
+      .srcObject
+      .getVideoTracks()[0]
+      ?.addEventListener('ended', this.stopRecording.bind(this));
+
     this.record$.next({ type: 'start', videoRef: this.videoRef });
   }
 
