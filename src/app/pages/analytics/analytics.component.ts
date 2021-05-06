@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FaceDetectionService } from 'src/app/services/face-detection.service';
 
 @Component({
@@ -18,9 +19,17 @@ export class AnalyticsComponent implements OnInit {
     return Math.round(average * 100) / 100;
   }
 
-  constructor(public faceDetection: FaceDetectionService) { }
+  constructor(public faceDetection: FaceDetectionService,
+              private router: Router) { }
 
   ngOnInit(): void {
+    if (!this.faceDetection.detections?.length) {
+      this.navigateToHome();
+    }
+  }
+
+  private navigateToHome(): void {
+    this.router.navigateByUrl('');
   }
 
 }
