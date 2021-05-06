@@ -50,12 +50,21 @@ export class MoodBarometerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if (this.screenRecorder.record$.value.type === 'stop') {
+      this.navigateToHome();
+      return;
+    }
+
     this.screenRecorder.record$
-      .pipe(
-        filter(record => record.type === 'stop'),
-        takeUntil(this.ngUnsubscribe),
-        take(1),
-      ).subscribe(this.onFinishRecording.bind(this));
+    .pipe(
+      filter(record => record.type === 'stop'),
+      takeUntil(this.ngUnsubscribe),
+      take(1),
+    ).subscribe(this.onFinishRecording.bind(this));
+  }
+
+  private navigateToHome(): void {
+    this.router.navigateByUrl('');
   }
 
   private onFinishRecording(): void {
