@@ -1,8 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { CategoryScale, Chart, Legend, LinearScale, LineController, LineElement, PointElement, TimeScale, TimeSeriesScale,  } from 'chart.js';
-import * as faceapi from 'face-api.js';
-import { Observable } from 'rxjs';
-
+import { CategoryScale, Chart, Legend, LinearScale, LineController, LineElement, PointElement, TimeScale, TimeSeriesScale } from 'chart.js';
+import 'chartjs-adapter-moment';
 
 @Component({
   selector: 'app-emotion-rollercoaster',
@@ -13,8 +11,7 @@ export class EmotionRollercoasterComponent implements AfterViewInit {
 
   @ViewChild('canvas') public canvas: ElementRef;
 
-  @Input() faceDetections?: Observable<faceapi.WithFaceExpressions<{ detection: faceapi.FaceDetection; }>[]>;
-
+  @Input() values: { timestamp: number, value: number }[] = [];
   public chart?: Chart;
 
   constructor() {
@@ -25,89 +22,28 @@ export class EmotionRollercoasterComponent implements AfterViewInit {
     this.chart = new Chart(this.canvas.nativeElement.getContext('2d'), {
       type: 'line',
       data: {
+        labels: this.values?.map(value => value.timestamp) || [],
         datasets: [{
           label: 'Angry',
-          data: [],
-          borderColor: 'red',
-          backgroundColor: 'red',
-        }, {
-          label: 'Disgusted',
-          data: [],
-          borderColor: 'brown',
-          backgroundColor: 'brown',
-        }, {
-          label: 'Happy',
-          data: [],
-          borderColor: 'green',
-          backgroundColor: 'green',
-        }, {
-          label: 'Fearful',
-          data: [],
-          borderColor: 'yellow',
-          backgroundColor: 'yellow',
-        }, {
-          label: 'Neutral',
-          data: [],
-          borderColor: 'blue',
-          backgroundColor: 'blue',
-        }, {
-          label: 'Sad',
-          data: [],
-          borderColor: 'black',
-          backgroundColor: 'black',
-        }, {
-          label: 'Surprised',
-          data: [],
-          borderColor: 'orange',
-          backgroundColor: 'orange',
+          data: this.values?.map(value => value.value) || [],
+          fill: false,
+          borderColor: 'white',
+          tension: 0.1,
         }]
       },
       options: {
         scales: {
           y: {
-            beginAtZero: true
+            min: -1,
+            max: 1,
           },
           x: {
-            type: 'linear',
+            type: 'timeseries',
           }
         },
-        plugins: {
-          legend: {
-            display: true,
-            position: 'top',
-          }
-        }
+        plugins: { legend: { display: false } }
       }
     });
-
-    this.faceDetections?.subscribe((detection) => this.addEmotions(detection));
-  }
-
-  public addEmotions(emotions: faceapi.WithFaceExpressions<{ detection: faceapi.FaceDetection; }>[]) {
-    const data = this.chart.data;
-    if (!data.labels) { data.labels = []; }
-    data.labels.push(data.labels.length || 0);
-
-    const detections = [[], [],  [], [], [], [], []];
-
-    emotions.forEach((person) => {
-      detections[0].push(person.expressions.angry);
-      detections[1].push(person.expressions.disgusted);
-      detections[2].push(person.expressions.happy);
-      detections[3].push(person.expressions.fearful);
-      detections[4].push(person.expressions.neutral);
-      detections[5].push(person.expressions.sad);
-      detections[6].push(person.expressions.surprised);
-    });
-
-    detections.forEach((emotions, index) => {
-      let sum = 0;
-      emotions.forEach((emotion) => { sum += emotion });
-      data.datasets[index].data.push(sum / emotions.length);
-    });
-
-
-    this.chart.update();
   }
 
 }

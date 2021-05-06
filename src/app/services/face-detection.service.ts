@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { interval, Observable, Subject } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import * as faceapi from 'face-api.js';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FaceDetectionService {
+
+  public detections: { timestamp: number, value: number }[] = [];
 
   constructor() {
     faceapi.nets.ssdMobilenetv1.loadFromUri('/assets/weights');
@@ -35,6 +37,21 @@ export class FaceDetectionService {
           },
         }
       })),
+      tap(this.saveDetections.bind(this)),
     );
+  }
+
+  private saveDetections(detections) {
+    const values = detections
+      .map((detection => detection.aggregated.positive - detection.aggregated.negative));
+
+    const average = values?.reduce((acc, current) => acc + current, 0) / values?.length
+
+    if (!average) { return; }
+
+    this.detections.push({
+      timestamp: Date.now(),
+      value: average,
+    })
   }
 }
