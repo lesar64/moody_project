@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FaceDetectionService } from 'src/app/services/face-detection.service';
+import * as fileSaver from 'file-saver';
 
 @Component({
   selector: 'app-analytics',
@@ -30,6 +31,17 @@ export class AnalyticsComponent implements OnInit {
 
   private navigateToHome(): void {
     this.router.navigateByUrl('');
+  }
+
+  public get getDat(): number | undefined {
+    if (!this.faceDetection.detections?.length) { return undefined; }
+
+    let fileToSave = new Blob([JSON.stringify(this.faceDetection.detections)], {
+       type: "json",
+
+     });
+
+     fileSaver.saveAs(fileToSave, 'data-pres-1.json');
   }
 
 }

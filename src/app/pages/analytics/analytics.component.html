@@ -2,4 +2,8 @@
 
 <h3 class="analytics__average" [innerHTML]="averageValue"></h3>
 
+<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"></script>
+<button class="btn"(click)="getDat"> Download</button>
+
+
 <app-emotion-rollercoaster [values]="faceDetection.detections" class="analytics__rollercoaster"></app-emotion-rollercoaster>
