@@ -20,9 +20,5 @@ export class HomeComponent implements OnInit {
       this.router.navigateByUrl('barometer');
     });
   }
-  presenterview(): void {
-      this.router.navigateByUrl('presenterview');
-
-    }
 
 }
