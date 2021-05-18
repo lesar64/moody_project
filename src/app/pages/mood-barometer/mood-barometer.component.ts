@@ -71,4 +71,9 @@ export class MoodBarometerComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('analytics');
   }
 
+  presenterview(): void {
+    this.router.navigateByUrl('presenterview');
+
+  }
+
 }
