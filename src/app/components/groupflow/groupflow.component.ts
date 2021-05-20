@@ -17,7 +17,7 @@ export class GroupflowComponent implements OnInit {
   }
 
   public get isWarning(): boolean {
-    return this.sd > 0.3;
+    return this.sd > 0.4;
   }
 
   constructor() { }

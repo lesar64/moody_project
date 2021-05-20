@@ -1,2 +1,3 @@
 <app-barometer class="mood-barometer__barometer" [value]="averageValue$ | async"></app-barometer>
 <app-groupflow class="mood-barometer__groupflow" [sd]="standardDeviation$ | async"></app-groupflow>
+<app-mood-swing class="mood-barometer__swing" *ngIf="!!(moodChanges$ | async)"></app-mood-swing>

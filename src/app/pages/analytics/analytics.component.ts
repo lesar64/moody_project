@@ -30,7 +30,7 @@ export class AnalyticsComponent implements OnInit {
   }
 
   private navigateToHome(): void {
-    // this.router.navigateByUrl('');
+    this.router.navigateByUrl('');
   }
 
   public get getDat(): number | undefined {

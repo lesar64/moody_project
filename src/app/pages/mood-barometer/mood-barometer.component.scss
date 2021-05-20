@@ -1,9 +1,13 @@
 .mood-barometer {
-  &__barometer, &__groupflow {
+  &__barometer, &__groupflow, &__swing {
     display: block;
   }
 
   &__barometer + &__groupflow {
     margin-top: 6rem;
+  }
+
+  &__groupflow + &__swing {
+    margin-top: 3rem;
   }
 }

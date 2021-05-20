@@ -13,6 +13,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { BarometerComponent } from './components/barometer/barometer.component';
 import { AnalyticsComponent } from './pages/analytics/analytics.component';
 import { GroupflowComponent } from './components/groupflow/groupflow.component';
+import { MoodSwingComponent } from './components/mood-swing/mood-swing.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { GroupflowComponent } from './components/groupflow/groupflow.component';
     BarometerComponent,
     AnalyticsComponent,
     GroupflowComponent,
+    MoodSwingComponent,
   ],
   imports: [
     BrowserModule,
