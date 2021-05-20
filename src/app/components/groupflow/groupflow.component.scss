@@ -1,4 +1,4 @@
-.barometer { 
+.groupflow { 
   width: 40rem;
   max-width: 80vw;
 
@@ -28,24 +28,12 @@
     background-color: #c5c6c7;
   }
 
-  &__happy, &__sad {
-    width: 50%;
+  &__sd {
     height: 100%;
-  }
+    background-color: #00bec4;
 
-  &__sad {
-    border-right: 1px solid grey;
-
-    &--on {
-      margin-left: auto;
-      background-color: red;
-    }  
-  }
-
-  &__happy {
-    &--on {
-      margin-right: auto;
-      background-color: green;
+    &--warn {
+      background-color: #fa6e6e;
     }
   }
 

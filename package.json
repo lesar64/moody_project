@@ -22,6 +22,7 @@
     "apexcharts": "^3.26.3",
     "face-api.js": "^0.22.2",
     "file-saver": "^2.0.5",
+    "mathjs": "^9.4.0",
     "moment": "^2.29.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

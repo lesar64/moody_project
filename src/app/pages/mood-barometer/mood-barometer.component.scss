@@ -1,0 +1,9 @@
+.mood-barometer {
+  &__barometer, &__groupflow {
+    display: block;
+  }
+
+  &__barometer + &__groupflow {
+    margin-top: 6rem;
+  }
+}
