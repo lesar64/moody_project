@@ -30,18 +30,18 @@ export class AnalyticsComponent implements OnInit {
   }
 
   private navigateToHome(): void {
-    this.router.navigateByUrl('');
+    // this.router.navigateByUrl('');
   }
 
   public get getDat(): number | undefined {
     if (!this.faceDetection.detections?.length) { return undefined; }
 
-    let fileToSave = new Blob([JSON.stringify(this.faceDetection.detections)], {
-       type: "json",
+    const fileToSave = new Blob([JSON.stringify(this.faceDetection.detections)], {
+      type: "json",
+    });
 
-     });
-
-     fileSaver.saveAs(fileToSave, 'data-pres-1.json');
+    const time = new Date();
+    fileSaver.saveAs(fileToSave, `moody_${time.toLocaleDateString().split('/').join('-')}_${time.getHours()}-${time.getMinutes()}.json`);
   }
 
 }
