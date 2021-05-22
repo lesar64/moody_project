@@ -38,6 +38,9 @@ export class MoodBarometerComponent implements OnInit, OnDestroy {
     // Calculate moving average
     map(arr => arr.reduce((acc, current) => acc + current, 0) / arr.length),
   );
+  public moodyDeviation$ = this.averageValue$.pipe(
+
+  );
 
   private ngUnsubscribe: Subject<boolean> = new Subject()
 
@@ -75,5 +78,4 @@ export class MoodBarometerComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('presenterview');
 
   }
-
 }

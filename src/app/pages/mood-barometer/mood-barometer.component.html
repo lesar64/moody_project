@@ -1,4 +1,5 @@
 <app-barometer [value]="averageValue$ | async"></app-barometer>
+<div class= "test" *ngIf="moodyDeviation$"> {{ moodyDeviation$ | async }} </div>
 
 <br>
 
