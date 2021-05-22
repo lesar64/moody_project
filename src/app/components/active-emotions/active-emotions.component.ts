@@ -1,4 +1,5 @@
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { ScreenRecorderService } from 'src/app/services/screen-recorder.service';
 import * as faceapi from 'face-api.js';
 
 @Component({
@@ -6,12 +7,18 @@ import * as faceapi from 'face-api.js';
   templateUrl: './active-emotions.component.html',
   styleUrls: ['./active-emotions.component.scss']
 })
-export class ActiveEmotionsComponent {
+export class ActiveEmotionsComponent implements OnInit {
 
   @Input() faceDetections?: faceapi.WithFaceExpressions<{ detection: faceapi.FaceDetection; }>[];
   @Input() videoRef?: ElementRef;
 
-  constructor() { }
+  constructor(private screenRecorder: ScreenRecorderService) {
+    
+  }
+
+  ngOnInit() {
+    this.screenRecorder.faceDetections$.subscribe(faceDetections$ => this.faceDetections = faceDetections$)
+  }
 
   public roundEmotion(emotion: number): number {
     return Math.round(emotion * 100) / 100

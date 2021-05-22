@@ -11,6 +11,7 @@ import { MoodBarometerComponent } from './pages/mood-barometer/mood-barometer.co
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BarometerComponent } from './components/barometer/barometer.component';
+import { Presenterview } from './pages/presenterview/presenterview.component';
 import { AnalyticsComponent } from './pages/analytics/analytics.component';
 import { GroupflowComponent } from './components/groupflow/groupflow.component';
 import { MoodSwingComponent } from './components/mood-swing/mood-swing.component';
@@ -29,6 +30,7 @@ import { MoodSwingComponent } from './components/mood-swing/mood-swing.component
     AnalyticsComponent,
     GroupflowComponent,
     MoodSwingComponent,
+    Presenterview,
   ],
   imports: [
     BrowserModule,

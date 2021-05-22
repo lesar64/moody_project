@@ -1,3 +1,9 @@
 <app-barometer class="mood-barometer__barometer" [value]="averageValue$ | async"></app-barometer>
 <app-groupflow class="mood-barometer__groupflow" [sd]="standardDeviation$ | async"></app-groupflow>
 <app-mood-swing class="mood-barometer__swing" *ngIf="!!(moodChanges$ | async)"></app-mood-swing>
+
+<br>
+
+<div class="center">
+  <button class="home__button" (click)="presenterview()">PRESENTERVIEW</button>
+</div>

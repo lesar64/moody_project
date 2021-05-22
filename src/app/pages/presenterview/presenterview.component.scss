@@ -1,18 +1,4 @@
-
-:host {
-  display: block;
-  margin-top: 4rem;
-}
-
-.active-emotion {
-  &__table {
-    color: #c5c6c7;
-    width: 100%;
-    margin-top: 3rem;
-  }
-}
-
-.emotions {
+.presenterview {
   &__title {
     color: #45a29e;
     font-size: 5rem;
@@ -29,3 +15,5 @@
     margin-top: 2rem;
   }
 }
+.number {
+color: white;}
