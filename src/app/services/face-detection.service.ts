@@ -41,7 +41,7 @@ export class FaceDetectionService {
     );
   }
 
-  private saveDetections(detections) {
+  public saveDetections(detections) {
     const values = detections
       .map((detection => detection.aggregated.positive - detection.aggregated.negative));
 

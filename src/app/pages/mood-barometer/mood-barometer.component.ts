@@ -1,8 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit , ElementRef, Input, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, map, scan, take, takeUntil } from 'rxjs/operators';
 import { ScreenRecorderService } from 'src/app/services/screen-recorder.service';
+import {FaceDetectionService} from 'src/app/services/face-detection.service';
+import { CategoryScale, Chart, Legend, LinearScale, LineController, LineElement, PointElement, TimeScale, TimeSeriesScale } from 'chart.js';
+import 'chartjs-adapter-moment';
 
 @Component({
   selector: 'app-mood-barometer',
@@ -38,9 +41,16 @@ export class MoodBarometerComponent implements OnInit, OnDestroy {
     // Calculate moving average
     map(arr => arr.reduce((acc, current) => acc + current, 0) / arr.length),
   );
-  public moodyDeviation$ = this.averageValue$.pipe(
+  // Test StandardDeviation MoodyScore
+  @ViewChild('canvas') public canvas: ElementRef;
 
+  @Input() values: { timestamp: number, value: number }[] = [];
+  public chart?: Chart;
+
+  public moodyDeviation$ = this.averageValue$.pipe(
+    //map(value => value.value),
   );
+
 
   private ngUnsubscribe: Subject<boolean> = new Subject()
 
