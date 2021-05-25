@@ -16,7 +16,7 @@ export class MoodBarometerComponent implements OnInit, OnDestroy {
   public averageValue$ = this.screenRecorder.faceDetections$.pipe(
     // Calculate score per person
     map((detections) => detections.map((detection) => {
-      return (<any>detection).aggregated.positive - (<any>detection).aggregated.negative;
+      return (detection as any).aggregated.positive - (detection as any).aggregated.negative;
     })),
 
     // Calculate mean of all people
@@ -39,12 +39,12 @@ export class MoodBarometerComponent implements OnInit, OnDestroy {
     map(arr => arr.reduce((acc, current) => acc + current, 0) / arr.length),
   );
 
-  private ngUnsubscribe: Subject<boolean> = new Subject()
+  private ngUnsubscribe: Subject<boolean> = new Subject();
 
   constructor(private screenRecorder: ScreenRecorderService,
               private router: Router) { }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void{
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }

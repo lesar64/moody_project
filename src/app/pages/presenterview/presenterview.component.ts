@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { ScreenRecorderService } from 'src/app/services/screen-recorder.service';
 
 @Component({
-  selector: 'presenterview',
+  selector: 'app-presenterview',
   templateUrl: './presenterview.component.html',
   styleUrls: ['./presenterview.component.scss']
 })
-export class Presenterview implements OnInit {
+export class PresenterviewComponent implements OnInit {
 
   ngOnInit(): void {
   }

@@ -15,7 +15,7 @@ export class EmotionRollercoasterComponent implements AfterViewInit {
   public chart?: Chart;
 
   constructor() {
-    Chart.register(LinearScale, LineElement, LineController, PointElement, CategoryScale, TimeSeriesScale, TimeScale, Legend)
+    Chart.register(LinearScale, LineElement, LineController, PointElement, CategoryScale, TimeSeriesScale, TimeScale, Legend);
   }
 
   ngAfterViewInit(): void {

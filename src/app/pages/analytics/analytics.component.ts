@@ -37,11 +37,11 @@ export class AnalyticsComponent implements OnInit {
     if (!this.faceDetection.detections?.length) { return undefined; }
 
     let fileToSave = new Blob([JSON.stringify(this.faceDetection.detections)], {
-       type: "json",
+       type: 'json',
 
      });
 
-     fileSaver.saveAs(fileToSave, 'data-pres-1.json');
+    fileSaver.saveAs(fileToSave, 'data-pres-1.json');
   }
 
 }

@@ -16,6 +16,7 @@ export class FaceDetectionService {
     faceapi.nets.faceRecognitionNet.loadFromUri('/assets/weights');
   }
 
+  // tslint:disable-next-line:max-line-length
   public detectAll(input: HTMLVideoElement | HTMLImageElement): Observable<faceapi.WithFaceExpressions<{ detection: faceapi.FaceDetection; }>[]> {
     return interval(1000).pipe(
       switchMap(() => {
@@ -24,34 +25,35 @@ export class FaceDetectionService {
             subscriber.next(detectedFaces);
             subscriber.complete();
             return detectedFaces;
-          })
-        })
+          });
+        });
       }),
       map((detections) => detections.map((detection) => {
         return {
           ...detection,
           aggregated: {
-            negative: detection.expressions.sad + detection.expressions.disgusted + detection.expressions.fearful + detection.expressions.angry,
+            negative: detection.expressions.sad + detection.expressions.disgusted + detection.expressions.fearful
+              + detection.expressions.angry,
             netural: detection.expressions.neutral,
             positive: detection.expressions.happy + detection.expressions.surprised,
           },
-        }
+        };
       })),
       tap(this.saveDetections.bind(this)),
     );
   }
 
-  private saveDetections(detections) {
+  private saveDetections(detections): void {
     const values = detections
       .map((detection => detection.aggregated.positive - detection.aggregated.negative));
 
-    const average = values?.reduce((acc, current) => acc + current, 0) / values?.length
+    const average = values?.reduce((acc, current) => acc + current, 0) / values?.length;
 
     if (!average) { return; }
 
     this.detections.push({
       timestamp: Date.now(),
       value: average,
-    })
+    });
   }
 }
