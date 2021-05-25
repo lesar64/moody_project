@@ -1,8 +1,9 @@
 <app-barometer [value]="averageValue$ | async"></app-barometer>
-<div class= "test" *ngIf="moodyDeviation$"> {{ moodyDeviation$ | async }} </div>
+<div class= "test" *ngIf="moodyDeviation$"> Moving Average Overall Happiness: {{ moodyDeviation$ | async }} </div>
 
 <br>
 
 <div class="center">
   <button class="home__button" (click)="presenterview()">PRESENTERVIEW</button>
 </div>
+
