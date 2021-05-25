@@ -13,6 +13,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { BarometerComponent } from './components/barometer/barometer.component';
 import { Presenterview } from './pages/presenterview/presenterview.component';
 import { AnalyticsComponent } from './pages/analytics/analytics.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AnalyticsComponent } from './pages/analytics/analytics.component';
     BarometerComponent,
     AnalyticsComponent,
     Presenterview,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
