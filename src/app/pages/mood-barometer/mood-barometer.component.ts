@@ -14,8 +14,6 @@ import * as faceapi from "face-api.js";
 export class MoodBarometerComponent implements OnInit, OnDestroy {
 
   static MOVING_AVERAGE_NUMBER = 10;
-  @Input() faceDetections?: faceapi.WithFaceExpressions<{ detection: faceapi.FaceDetection; }>[];
-  @Input() videoRef?: ElementRef;
 
   public averageValue$ = this.screenRecorder.faceDetections$.pipe(
     // Calculate score per person
@@ -62,7 +60,6 @@ export class MoodBarometerComponent implements OnInit, OnDestroy {
       this.navigateToHome();
       return;
     }
-    this.screenRecorder.faceDetections$.subscribe(faceDetections$ => this.faceDetections = faceDetections$)
     this.screenRecorder.record$
       .pipe(
         filter(record => record.type === 'stop'),
