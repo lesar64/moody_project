@@ -1,1 +1,15 @@
-<p>dashboard works! {{ groupFlow$ | async}}</p>
+<p>dashboard works!</p>
+<!-- <p>The groupflow indicator: {{ groupFlow | async}}</p> -->
+
+<table>
+  <tr><th>Emotion</th><!--<th>mean</th>--><th>std</th></tr>
+
+  <tr><td>Happy</td><!--<td>{{ mean_happy | async}}</td>--><td>{{ std_happy | async}}</td></tr>
+  <tr><td>Surprised</td><!--<td>{{ mean_surprised | async}}</td>--><td>{{ std_surprised | async}}</td></tr>
+  <tr><td>Neutral</td><!--<td>{{ mean_neutral | async}}</td>--><td>{{ std_neutral | async}}</td></tr>
+  <tr><td>Sad</td><!--<td>{{ mean_sad | async}}</td>--><td>{{ std_sad | async}}</td></tr>
+  <tr><td>Angry</td><!--<td>{{ mean_angry | async}}</td>--><td>{{ std_angry | async}}</td></tr>
+  <tr><td>Fearful</td><!--<td>{{ mean_fearful | async}}</td>--><td>{{ std_fearful | async}}</td></tr>
+  <tr><td>Disgusted</td><!--<td>{{ mean_disgusted | async}}</td>--><td>{{ std_disgusted | async}}</td></tr>
+
+</table>
