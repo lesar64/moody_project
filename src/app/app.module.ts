@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { NgxGaugeModule } from 'ngx-gauge';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ScreenRecorderComponent } from './components/screen-recorder/screen-recorder.component';
@@ -13,6 +13,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { BarometerComponent } from './components/barometer/barometer.component';
 import { Presenterview } from './pages/presenterview/presenterview.component';
 import { AnalyticsComponent } from './pages/analytics/analytics.component';
+import { HappyBarometerComponent } from './components/happy-barometer/happy-barometer.component';
 
 @NgModule({
   declarations: [
@@ -27,10 +28,12 @@ import { AnalyticsComponent } from './pages/analytics/analytics.component';
     BarometerComponent,
     AnalyticsComponent,
     Presenterview,
+    HappyBarometerComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxGaugeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

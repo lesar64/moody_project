@@ -1,3 +1,13 @@
+<!--<script src="node_modules/angular/angular.min.js"></script>
+<script src="node_modules/angular-gauge/dist/angularjs-gauge.min.js"></script>
+<script>angular.module('yourApp', ['angularjs-gauge']);</script>
+<div class = "yourApp">
+  <ng-gauge size="150" type="full" thick="5"
+          min="0" max="120" value="68.2"
+          cap="round" label="Speed" append="mph"
+          foreground-color="#ffcc66" background-color="#EEE">
+  </ng-gauge>
+</div>-->
 <app-barometer [value]="averageValue$ | async"></app-barometer>
 <div class= "test" *ngIf="moodyDeviation$"> Moving Average Overall Happiness: {{ moodyDeviation$ | async }} </div>
 
@@ -6,4 +16,7 @@
 <div class="center">
   <button class="home__button" (click)="presenterview()">PRESENTERVIEW</button>
 </div>
+
+<app-happy-barometer> </app-happy-barometer>
+
 

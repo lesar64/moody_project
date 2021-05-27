@@ -105,4 +105,5 @@ export class MoodBarometerComponent implements OnInit, OnDestroy {
   );
 
 
+
 }
