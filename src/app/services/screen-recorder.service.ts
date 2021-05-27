@@ -1,6 +1,6 @@
 import { ElementRef, Injectable } from '@angular/core';
 import { BehaviorSubject, NEVER, Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { share, switchMap } from 'rxjs/operators';
 import { FaceDetectionService } from './face-detection.service';
 import * as faceapi from 'face-api.js';
 
@@ -18,6 +18,8 @@ export class ScreenRecorderService {
         default: return NEVER;
       }
     }),
+
+    share(),
   );
 
   private videoRef?: ElementRef;
