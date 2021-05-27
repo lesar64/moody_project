@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 
 @Component({
@@ -7,18 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./happy-barometer.component.scss']
 })
 export class HappyBarometerComponent implements OnInit {
+  @Input() value?: number;
 
-  gaugeType: 'semi';
-  gaugeValue = 28;
-  gaugeLabel: 'Speed';
-  gaugeAppendText: 'km/hr';
-  backgroundColor: 'white';
-  foregroundColor: 'rgba(255, 255, 255, 0.3)';
+  public get roundedValue(): number | undefined {
+    if (!this.value) { return this.value; }
+    console.log(this.value);
+    return Math.round(this.value * 100);
+  }
 
   thresholdConfig = {
-    0: {color: 'green'},
+    0: {color: 'red'},
     40: {color: 'orange'},
-    75.5: {color: 'red'}
+    75.5: {color: 'green'}
   };
 
   constructor() {}

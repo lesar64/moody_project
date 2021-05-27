@@ -17,6 +17,6 @@
   <button class="home__button" (click)="presenterview()">PRESENTERVIEW</button>
 </div>
 
-<app-happy-barometer> </app-happy-barometer>
+<app-happy-barometer [value]="moodyDeviation$ | async" ></app-happy-barometer>
 
 
