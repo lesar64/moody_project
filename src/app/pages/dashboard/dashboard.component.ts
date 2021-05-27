@@ -270,15 +270,12 @@ export class DashboardComponent implements OnInit {
           ((1 - std_neutral) * mean_neutral), ((1 - std_sad) * mean_sad),
           ((1 - std_angry) * mean_angry), ((1 - std_fearful) * mean_fearful),
           ((1 - std_disgusted) * mean_disgusted)]
-        console.log(gF)
         this.gF = gF;
       }
   )
 
   public gF = []
 
-  ngOnInit(): void {
-    console.log("Dashboard geladen")
-  }
+  ngOnInit(): void { }
 
 }
