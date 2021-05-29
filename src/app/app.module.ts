@@ -14,6 +14,7 @@ import { BarometerComponent } from './components/barometer/barometer.component';
 import { Presenterview } from './pages/presenterview/presenterview.component';
 import { AnalyticsComponent } from './pages/analytics/analytics.component';
 import { HappyBarometerComponent } from './components/happy-barometer/happy-barometer.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { HappyBarometerComponent } from './components/happy-barometer/happy-baro
     AnalyticsComponent,
     Presenterview,
     HappyBarometerComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

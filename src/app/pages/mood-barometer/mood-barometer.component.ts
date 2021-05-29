@@ -80,7 +80,10 @@ export class MoodBarometerComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('presenterview');
 
   }
+  dashboard(): void {
+    this.router.navigateByUrl('dashboard');
 
+  }
   public moodyDeviation$ = this.screenRecorder.faceDetections$.pipe(
     map((detections) => detections.map((detection) => {
       return (<any>detection).expressions.happy;
