@@ -10,7 +10,15 @@ import { ScreenRecorderService } from 'src/app/services/screen-recorder.service'
 })
 export class DashboardComponent implements OnInit {
 
+  static MOVING_AVERAGE_NUMBER = 10;
+
+  static MOVING_STD_NUMBER = 60 * 30;
+
   constructor(private screenRecorder: ScreenRecorderService) { }
+
+  ngOnInit(): void { }
+
+  public curr_num = DashboardComponent.MOVING_STD_NUMBER;
 
   // Helper method to log values to the console
   console = (text: string) => map(arr => {
@@ -41,12 +49,12 @@ export class DashboardComponent implements OnInit {
   });
 
   // Moving values for the next 10 occurences
-  moving_values = () => scan((acc, curr) => {
+  moving_values = (length) => scan((acc, curr) => {
     if (!curr) { return acc; }
 
     acc.push(curr);
 
-    if (acc.length > 10) {
+    if (acc.length > length) {
       acc.shift();
     }
 
@@ -65,7 +73,7 @@ export class DashboardComponent implements OnInit {
 
     this.mean(),
 
-    this.moving_values(),
+    this.moving_values(DashboardComponent.MOVING_AVERAGE_NUMBER),
 
     // Calculate moving average
     this.mean(),
@@ -79,10 +87,23 @@ export class DashboardComponent implements OnInit {
 
     this.std(),
 
-    this.moving_values(),
+    this.moving_values(DashboardComponent.MOVING_AVERAGE_NUMBER),
 
     // Calculate moving average
     this.mean(),
+  )
+
+  public moving_std_happy = this.screenRecorder.faceDetections$.pipe(
+    
+    map((detections) => detections.map((detection) => {
+      return (<any>detection.expressions.happy)
+    })),
+
+    this.std(),
+
+    this.moving_values(DashboardComponent.MOVING_STD_NUMBER),
+
+    this.std(),
   )
 
   public mean_surprised = this.screenRecorder.faceDetections$.pipe(
@@ -93,7 +114,7 @@ export class DashboardComponent implements OnInit {
 
     this.mean(),
 
-    this.moving_values(),
+    this.moving_values(DashboardComponent.MOVING_AVERAGE_NUMBER),
 
     // Calculate moving average
     this.mean(),
@@ -107,10 +128,23 @@ export class DashboardComponent implements OnInit {
 
     this.std(),
 
-    this.moving_values(),
+    this.moving_values(DashboardComponent.MOVING_AVERAGE_NUMBER),
 
     // Calculate moving average
     this.mean(),
+  )
+
+  public moving_std_surprised = this.screenRecorder.faceDetections$.pipe(
+    
+    map((detections) => detections.map((detection) => {
+      return (<any>detection.expressions.surprised)
+    })),
+
+    this.std(),
+
+    this.moving_values(DashboardComponent.MOVING_STD_NUMBER),
+
+    this.std(),
   )
 
   public mean_neutral = this.screenRecorder.faceDetections$.pipe(
@@ -121,7 +155,7 @@ export class DashboardComponent implements OnInit {
 
     this.mean(),
 
-    this.moving_values(),
+    this.moving_values(DashboardComponent.MOVING_AVERAGE_NUMBER),
 
     // Calculate moving average
     this.mean(),
@@ -135,7 +169,7 @@ export class DashboardComponent implements OnInit {
 
     this.std(),
 
-    this.moving_values(),
+    this.moving_values(DashboardComponent.MOVING_AVERAGE_NUMBER),
 
     // Calculate moving average
     this.mean(),
@@ -149,7 +183,7 @@ export class DashboardComponent implements OnInit {
 
     this.mean(),
 
-    this.moving_values(),
+    this.moving_values(DashboardComponent.MOVING_AVERAGE_NUMBER),
 
     // Calculate moving average
     this.mean(),
@@ -163,7 +197,7 @@ export class DashboardComponent implements OnInit {
 
     this.std(),
 
-    this.moving_values(),
+    this.moving_values(DashboardComponent.MOVING_AVERAGE_NUMBER),
 
     // Calculate moving average
     this.mean(),
@@ -177,7 +211,7 @@ export class DashboardComponent implements OnInit {
 
     this.mean(),
 
-    this.moving_values(),
+    this.moving_values(DashboardComponent.MOVING_AVERAGE_NUMBER),
 
     // Calculate moving average
     this.mean(),
@@ -191,7 +225,7 @@ export class DashboardComponent implements OnInit {
 
     this.std(),
 
-    this.moving_values(),
+    this.moving_values(DashboardComponent.MOVING_AVERAGE_NUMBER),
 
     // Calculate moving average
     this.mean(),
@@ -205,7 +239,7 @@ export class DashboardComponent implements OnInit {
 
     this.mean(),
 
-    this.moving_values(),
+    this.moving_values(DashboardComponent.MOVING_AVERAGE_NUMBER),
 
     // Calculate moving average
     this.mean(),
@@ -219,7 +253,7 @@ export class DashboardComponent implements OnInit {
 
     this.std(),
 
-    this.moving_values(),
+    this.moving_values(DashboardComponent.MOVING_AVERAGE_NUMBER),
 
     // Calculate moving average
     this.mean(),
@@ -233,7 +267,7 @@ export class DashboardComponent implements OnInit {
 
     this.mean(),
 
-    this.moving_values(),
+    this.moving_values(DashboardComponent.MOVING_AVERAGE_NUMBER),
 
     // Calculate moving average
     this.mean(),
@@ -247,7 +281,7 @@ export class DashboardComponent implements OnInit {
 
     this.std(),
 
-    this.moving_values(),
+    this.moving_values(DashboardComponent.MOVING_AVERAGE_NUMBER),
 
     // Calculate moving average
     this.mean(),
@@ -275,7 +309,5 @@ export class DashboardComponent implements OnInit {
   )
 
   public gF = []
-
-  ngOnInit(): void { }
 
 }
