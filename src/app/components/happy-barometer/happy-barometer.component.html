@@ -1,0 +1,33 @@
+<!-- <script src="vendor/angular/angular.min.js"></script>
+<script src="vendor/angularjs-gauge/dist/angularjs-gauge.min.js"></script>
+<script src="node_modules/angular/angular.min.js"></script>
+<script src="node_modules/angular-gauge/dist/angularjs-gauge.min.js"></script>
+
+<script> angular.module('yourApp', ['angularjs-gauge']);</script>
+<ng-gauge size="200" type="full" thick="5" min="0" max="120" value="68.2" cap="round" label="Speed"  foreground-color="#ffcc66" background-color="rgba(255,255,255, 0.4)" append="mph"></ng-gauge>
+-->
+<ngx-gauge style ="color:white"
+           size="300"
+           type="full"
+           thick="20"
+           min="0"
+           max="100"
+           cap="round"
+           label="Happiness"
+           foreground-color="white"
+           background-color="rgba(255,255,255, 0.4)"
+           append="%"
+           [value]="roundedValue"
+           [thresholds]="thresholdConfig">
+
+</ngx-gauge>
+
+<!--<ngx-gauge [type]="gaugeType"-->
+<!--           [value]="gaugeValue"-->
+<!--           [label]="gaugeLabel"-->
+<!--           [append]="gaugeAppendText"-->
+<!--           [thresholds]="thresholdConfig"-->
+<!--           [backgroundColor]="backgroundColor"-->
+<!--           [foregroundColor]="foregroundColor">-->
+
+<!--</ngx-gauge>-->
