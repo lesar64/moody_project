@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ScreenRecorderService } from 'src/app/services/screen-recorder.service';
-import {filter, map, scan, take, takeUntil, tap} from "rxjs/operators";
-import {Subject} from "rxjs";
+import { filter, map, scan, take, takeUntil, tap } from "rxjs/operators";
+import { Subject } from "rxjs";
 import 'chartjs-adapter-moment';
 
 @Component({
@@ -10,7 +10,7 @@ import 'chartjs-adapter-moment';
   templateUrl: './presenterview.component.html',
   styleUrls: ['./presenterview.component.scss']
 })
-export class Presenterview implements OnInit {
+export class PresenterviewComponent implements OnInit {
 
   static MOVING_AVERAGE_NUMBER = 10;
   private happyness: number;
@@ -63,7 +63,7 @@ export class Presenterview implements OnInit {
 
       acc.push(curr);
 
-      if (acc.length > Presenterview.MOVING_AVERAGE_NUMBER) {
+      if (acc.length > PresenterviewComponent.MOVING_AVERAGE_NUMBER) {
         acc.shift();
       }
 
