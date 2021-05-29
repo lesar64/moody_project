@@ -6,7 +6,7 @@ import { Subject } from "rxjs";
 import 'chartjs-adapter-moment';
 
 @Component({
-  selector: 'presenterview',
+  selector: 'app-presenterview',
   templateUrl: './presenterview.component.html',
   styleUrls: ['./presenterview.component.scss']
 })

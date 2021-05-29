@@ -11,8 +11,9 @@ import { MoodBarometerComponent } from './pages/mood-barometer/mood-barometer.co
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BarometerComponent } from './components/barometer/barometer.component';
-import { PresenterviewComponent } from './pages/presenterview/presenterview.component';
 import { AnalyticsComponent } from './pages/analytics/analytics.component';
+import { PresenterviewComponent } from './pages/presenterview/presenterview.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { HappyBarometerComponent } from './components/happy-barometer/happy-barometer.component';
 
 @NgModule({
@@ -28,6 +29,7 @@ import { HappyBarometerComponent } from './components/happy-barometer/happy-baro
     BarometerComponent,
     AnalyticsComponent,
     PresenterviewComponent,
+    DashboardComponent,
     HappyBarometerComponent,
   ],
   imports: [

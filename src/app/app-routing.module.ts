@@ -12,11 +12,10 @@ const routes: Routes = [{
 }, {
   path: 'barometer',
   component: MoodBarometerComponent
-},{
+}, {
    path: 'presenterview',
    component: PresenterviewComponent
- },
-{
+}, {
   path: 'analytics',
   component: AnalyticsComponent,
 }];

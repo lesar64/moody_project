@@ -17,17 +17,15 @@ export class BarometerComponent implements OnInit {
 
   public get sadWidth(): string {
     if (!!this.value && this.value < 0) {
-      return `${(0 - this.value) / 2 * 100}%`
+      return `${(0 - this.value) / 2 * 100}%`;
     }
-    
     return '50%';
   }
 
   public get happyWidth(): string {
     if (!!this.value && this.value > 0) {
-      return `${this.value / 2 * 100}%`
+      return `${this.value / 2 * 100}%`;
     }
-    
     return '50%';
   }
 
