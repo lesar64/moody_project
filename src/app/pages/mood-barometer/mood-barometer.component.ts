@@ -1,16 +1,16 @@
 import {Component, OnDestroy, OnInit, ElementRef, Input, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {Subject} from 'rxjs';
-import {filter, map, scan, take, takeUntil} from 'rxjs/operators';
+import {filter, map, tap, scan, take, takeUntil} from 'rxjs/operators';
 import {ScreenRecorderService} from 'src/app/services/screen-recorder.service';
 import 'chartjs-adapter-moment';
-import * as faceapi from "face-api.js";
 
 @Component({
   selector: 'app-mood-barometer',
   templateUrl: './mood-barometer.component.html',
   styleUrls: ['./mood-barometer.component.scss']
 })
+
 export class MoodBarometerComponent implements OnInit, OnDestroy {
 
   static MOVING_AVERAGE_NUMBER = 10;
@@ -48,7 +48,9 @@ export class MoodBarometerComponent implements OnInit, OnDestroy {
 
   constructor(private screenRecorder: ScreenRecorderService,
               private router: Router) {
+
   }
+
 
   ngOnDestroy() {
     this.ngUnsubscribe.next();
@@ -56,7 +58,9 @@ export class MoodBarometerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
     if (this.screenRecorder.record$.value.type === 'stop') {
+
       this.navigateToHome();
       return;
     }
@@ -80,33 +84,4 @@ export class MoodBarometerComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('presenterview');
 
   }
-  dashboard(): void {
-    this.router.navigateByUrl('dashboard');
-
-  }
-  public moodyDeviation$ = this.screenRecorder.faceDetections$.pipe(
-    map((detections) => detections.map((detection) => {
-      return (<any>detection).expressions.happy;
-    })),
-    map(arr => arr.reduce((acc, current) => acc + current, 0) / arr.length),
-    scan((acc, curr) => {
-      if (!curr) {
-        return acc;
-      }
-
-      acc.push(curr);
-
-      if (acc.length > MoodBarometerComponent.MOVING_AVERAGE_NUMBER) {
-        acc.shift();
-      }
-
-      return acc;
-    }, []),
-
-// Calculate moving average
-    map(arr => arr.reduce((acc, current) => acc + current, 0) / arr.length),
-  );
-
-
-
 }

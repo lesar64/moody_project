@@ -17,3 +17,27 @@
 }
 .number {
 color: white;}
+
+.diagramme{
+  display: inline-block;
+}
+.diagramm{
+  margin: 100px;
+  margin-bottom: 40px;
+  display: inline-block;
+}
+.warnings{
+
+  height: 200px;
+  margin-left:200px;
+  margin-right:200px;
+  color: white;
+  display:flex;
+  display: -webkit-flex;
+  font-size: 40px;
+  vertical-align: middle;
+}
+.text-warning{
+  text-align: center;
+  margin: auto;
+}
