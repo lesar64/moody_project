@@ -372,20 +372,7 @@ export class DashboardService {
     this.mean_fearful, this.std_fearful,
     this.mean_disgusted, this.std_disgusted] 
 
-  private groupFlow = combineLatest(this.gFObservables).subscribe(
-      ([mean_happy, std_happy, mean_surprised, std_surprised,
-      mean_neutral, std_neutral, mean_sad, std_sad,
-      mean_angry, std_angry, mean_fearful, std_fearful,
-      mean_disgusted, std_disgusted]) => {
-        let gF = ((1 - std_happy) * mean_happy) + ((1 - std_surprised) * mean_surprised) +
-          ((1 - std_neutral) * mean_neutral) + ((1 - std_sad) * mean_sad) +
-          ((1 - std_angry) * mean_angry) + ((1 - std_fearful) * mean_fearful) +
-          ((1 - std_disgusted) * mean_disgusted)
-        this.groupflowIndicator = Math.round(gF * 100) / 100;
-      }
-  )
-
-  public groupflowIndicator = 0;
+  public groupFlowIndicator$ = combineLatest(this.gFObservables)
 
   private peakObservables = [this.moving_std_happy, 
     this.moving_std_surprised,
@@ -395,18 +382,6 @@ export class DashboardService {
     this.moving_std_fearful,
     this.moving_std_disgusted] 
 
-  private peak = combineLatest(this.peakObservables).subscribe(
-    ([moving_std_happy, moving_std_surprised,
-      moving_std_neutral, moving_std_sad,
-      moving_std_angry, moving_std_fearful,
-      moving_std_disgusted]) => {
-        let p = moving_std_happy + moving_std_surprised +
-        moving_std_neutral + moving_std_sad +
-        moving_std_angry + moving_std_fearful +
-        moving_std_disgusted;
-        this.peakIndicator = Math.round(p * 100) / 100;
-      }
-  )
+  public peakIndicator$ = combineLatest(this.peakObservables)
 
-  peakIndicator = 0;
 }

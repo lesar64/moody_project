@@ -7,6 +7,8 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./happy-barometer.component.scss']
 })
 export class HappyBarometerComponent implements OnInit {
+
+  @Input() label?: string;
   @Input() value?: number;
 
   public get roundedValue(): number | undefined {

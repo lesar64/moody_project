@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ScreenRecorderService } from 'src/app/services/screen-recorder.service';
+import { DashboardService } from 'src/app/services/dashboard.service';
 import { filter, map, scan, take, takeUntil, tap } from "rxjs/operators";
 import { Subject } from "rxjs";
 import 'chartjs-adapter-moment';
@@ -20,10 +21,8 @@ export class PresenterviewComponent implements OnInit {
   private ngUnsubscribe: Subject<boolean> = new Subject()
 
   constructor(private screenRecorder: ScreenRecorderService,
-              private router: Router) {
-
-  }
-
+    private dashboard: DashboardService,
+    private router: Router) { }
 
   ngOnDestroy() {
     this.ngUnsubscribe.next();
@@ -52,33 +51,76 @@ export class PresenterviewComponent implements OnInit {
     this.router.navigateByUrl('analytics');
   }
 
+  public groupFlowIndicator$ = this.dashboard.groupFlowIndicator$.subscribe(
+    ([mean_happy, std_happy, mean_surprised, std_surprised,
+    mean_neutral, std_neutral, mean_sad, std_sad,
+    mean_angry, std_angry, mean_fearful, std_fearful,
+    mean_disgusted, std_disgusted]) => {
+      let gF = ((1 - std_happy) * mean_happy) + ((1 - std_surprised) * mean_surprised) +
+        ((1 - std_neutral) * mean_neutral) + ((1 - std_sad) * mean_sad) +
+        ((1 - std_angry) * mean_angry) + ((1 - std_fearful) * mean_fearful) +
+        ((1 - std_disgusted) * mean_disgusted)
+      this.groupflowIndicator = Math.round(gF * 100) / 100;
+      console.log("Value of the groupflow indicator: " + this.groupflowIndicator)
+    }
+  )
 
-  public averageHappiness$ = this.screenRecorder.faceDetections$.pipe(
-    map((detections) => detections.map((detection) => {
-      return (<any>detection).expressions.happy;
-    })),
-    map(arr => arr.reduce((acc, current) => acc + current, 0) / arr.length),
-    scan((acc, curr) => {
-      if (!curr) {
-        return acc;
-      }
+  public groupflowIndicator = 0;
 
-      acc.push(curr);
+  public peakIndicator$ = this.dashboard.peakIndicator$.subscribe(
+    ([moving_std_happy, moving_std_surprised,
+    moving_std_neutral, moving_std_sad,
+    moving_std_angry, moving_std_fearful,
+    moving_std_disgusted]) => {
+      let p = moving_std_happy + moving_std_surprised +
+        moving_std_neutral + moving_std_sad +
+        moving_std_angry + moving_std_fearful +
+        moving_std_disgusted;
+      let max_norm = 1
+      let min_norm = 0
+      let max = 1.5
+      let min = 0
+      let peakIndicator = (p - min) * ((max_norm - min_norm) / (max - min)) + min_norm
 
-      if (acc.length > PresenterviewComponent.MOVING_AVERAGE_NUMBER) {
-        acc.shift();
-      }
+      this.peakIndicator = Math.round(peakIndicator * 100) / 100;
+      console.log("Value of the peak Indicator: " + this.peakIndicator)
+    })
 
-      return acc;
-    }, []),
+  public peakIndicator = 0;
 
-// Calculate moving average
-    map(arr => arr.reduce((acc, current) => acc + current, 0) / arr.length),
+  public mean_happiness = this.dashboard.mean_happy.pipe(
     tap((value) => {
       this.happyness = value;
       this.setWarningtext();
     })
-  );
+  )
+
+//   public averageHappiness$ = this.screenRecorder.faceDetections$.pipe(
+//     map((detections) => detections.map((detection) => {
+//       return (<any>detection).expressions.happy;
+//     })),
+//     map(arr => arr.reduce((acc, current) => acc + current, 0) / arr.length),
+//     scan((acc, curr) => {
+//       if (!curr) {
+//         return acc;
+//       }
+
+//       acc.push(curr);
+
+//       if (acc.length > PresenterviewComponent.MOVING_AVERAGE_NUMBER) {
+//         acc.shift();
+//       }
+
+//       return acc;
+//     }, []),
+
+// // Calculate moving average
+//     map(arr => arr.reduce((acc, current) => acc + current, 0) / arr.length),
+//     tap((value) => {
+//       this.happyness = value;
+//       this.setWarningtext();
+//     })
+//   );
 
   public warningText = "Hallo";
   public warningColor = "darkgrey";
