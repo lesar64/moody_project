@@ -1,10 +1,15 @@
 <div class="diagramme">
-  <div class ="diagramm"> <app-happy-barometer [value]="averageHappiness$ | async" ></app-happy-barometer></div>
-  <div class ="diagramm"><app-happy-barometer [value]="averageHappiness$ | async" ></app-happy-barometer></div>
-  <div class ="diagramm"> <app-happy-barometer [value]="averageHappiness$ | async" ></app-happy-barometer> </div>
+
+  <div class="diagramm"><app-happy-barometer [value]="averageHappiness$ | async"></app-happy-barometer></div>
+
+  <div class="diagramm"><app-pie-chart></app-pie-chart></div>
+
+  <div class="diagramm"><app-happy-barometer [value]="averageHappiness$ | async"></app-happy-barometer> </div>
+
 </div>
+
 <div class ="warnings" style ="background-color:{{warningColor}}">
-  <div class="text-warning" > {{warningText}} </div>
+  <div class="text-warning">{{warningText}}</div>
 </div>
 
 <app-dashboard></app-dashboard>
