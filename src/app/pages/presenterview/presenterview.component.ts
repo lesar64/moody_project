@@ -13,11 +13,6 @@ import 'chartjs-adapter-moment';
 })
 export class PresenterviewComponent implements OnInit {
 
-  static MOVING_AVERAGE_NUMBER = 10;
-  private happyness: number;
-  private standardDeviation: number = 0.4;
-  private groupflow: number =0.09;
-
   private ngUnsubscribe: Subject<boolean> = new Subject()
 
   constructor(private screenRecorder: ScreenRecorderService,
@@ -61,11 +56,11 @@ export class PresenterviewComponent implements OnInit {
         ((1 - std_angry) * mean_angry) + ((1 - std_fearful) * mean_fearful) +
         ((1 - std_disgusted) * mean_disgusted)
       this.groupflowIndicator = Math.round(gF * 100) / 100;
-      console.log("Value of the groupflow indicator: " + this.groupflowIndicator)
+      // console.log("Value of the groupflow indicator: " + this.groupflowIndicator)
     }
   )
 
-  public groupflowIndicator = 0;
+  public groupflowIndicator?: number;
 
   public peakIndicator$ = this.dashboard.peakIndicator$.subscribe(
     ([moving_std_happy, moving_std_surprised,
@@ -83,17 +78,22 @@ export class PresenterviewComponent implements OnInit {
       let peakIndicator = (p - min) * ((max_norm - min_norm) / (max - min)) + min_norm
 
       this.peakIndicator = Math.round(peakIndicator * 100) / 100;
-      console.log("Value of the peak Indicator: " + this.peakIndicator)
+      // console.log("Value of the peak Indicator: " + this.peakIndicator)
     })
 
-  public peakIndicator = 0;
+  public peakIndicator?: number;
 
-  public mean_happiness = this.dashboard.mean_happy.pipe(
-    tap((value) => {
-      this.happyness = value;
+  private mean_happiness$ = this.dashboard.mean_happy.subscribe(
+    (value) => {
+      this.happiness = value;
+      console.log(value)
       this.setWarningtext();
-    })
+    }
   )
+
+  public happiness?: number;
+
+//   static MOVING_AVERAGE_NUMBER = 10;
 
 //   public averageHappiness$ = this.screenRecorder.faceDetections$.pipe(
 //     map((detections) => detections.map((detection) => {
@@ -122,31 +122,35 @@ export class PresenterviewComponent implements OnInit {
 //     })
 //   );
 
+  // private standardDeviation: number = 0.4;
+  // private groupflow: number =0.09;
+
   public warningText = "Hallo";
+
   public warningColor = "darkgrey";
 
   public setWarningtext() {
-    if (this.standardDeviation <= 0.1 ) {
+    if (this.peakIndicator <= 0.1 ) {
       this.warningText = "It seems you lost your audience. Surprise them!";
       this.warningColor="darkred";
     } else {
-      if (this.groupflow <= 0.1) {
+      if (this.groupflowIndicator <= 0.1) {
         this.warningText = "Your audience is not on the same page. Repeat your explanations!";
         this.warningColor="darkred";
       } else {
-        if (this.happyness <= 0.1) {
+        if (this.happiness <= 0.1) {
           this.warningText = "The mood reached the bottom line. Cheer up your audience!";
           this.warningColor="darkred";
         }else{
-          if (this.standardDeviation <= 0.5 ) {
+          if (this.peakIndicator <= 0.5 ) {
             this.warningText = "Your meeting seems to get boring. Try to be more emotional!";
             this.warningColor="yellow";
           } else {
-            if (this.groupflow <= 0.5) {
+            if (this.groupflowIndicator <= 0.5) {
               this.warningText = "It seems your audience is not on the same level. Maybe ask for ambiguities? ";
               this.warningColor="yellow";
             } else {
-              if (this.happyness <= 0.5) {
+              if (this.happiness <= 0.5) {
                 this.warningText = "The mood seems to decrease. Try to smile more! ";
                 this.warningColor="yellow";
               }else{
