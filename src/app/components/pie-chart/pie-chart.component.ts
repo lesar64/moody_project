@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { combineLatest } from 'rxjs';
+import { DashboardService } from 'src/app/services/dashboard.service';
 
 @Component({
   selector: 'app-pie-chart',
@@ -7,36 +9,86 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PieChartComponent implements OnInit {
 
-  single: any[] = [
+  private mean_emotion$;
+
+  ngOnInit(): void {
+    this.mean_emotion$ = combineLatest([
+      this.dashbaord.mean_happy,
+      this.dashbaord.mean_surprised,
+      this.dashbaord.mean_neutral,
+      this.dashbaord.mean_sad,
+      this.dashbaord.mean_angry,
+      this.dashbaord.mean_fearful,
+      this.dashbaord.mean_disgusted
+    ]).subscribe(([mean_happy, mean_surprised,
+        mean_neutral, mean_sad, mean_angry,
+        mean_fearful, mean_disgusted]) => {
+        this.mean_emotion = [
+          {
+            "name": "Happy",
+            "value": mean_happy
+          },
+          {
+            "name": "Surprised",
+            "value": mean_surprised
+          },
+          {
+            "name": "Neutral",
+            "value": mean_neutral
+          },
+          {
+            "name": "Sad",
+            "value": mean_sad
+          },
+            {
+            "name": "Angry",
+            "value": mean_angry
+          },
+          {
+            "name": "Fearful",
+            "value": mean_fearful
+          },
+          {
+            "name": "Disgusted",
+            "value": mean_disgusted
+          }
+        ];
+
+    });
+  }
+
+  // Data
+  mean_emotion: any[] = [
     {
       "name": "Happy",
-      "value": 0.4
+      "value": 1 / 7
     },
     {
       "name": "Surprised",
-      "value": 0.1
+      "value": 1 / 7
     },
     {
       "name": "Neutral",
-      "value": 0.1
+      "value": 1 / 7
     },
     {
       "name": "Sad",
-      "value": 0.1
+      "value": 1 / 7
     },
       {
       "name": "Angry",
-      "value": 0.1
+      "value": 1 / 7
     },
     {
       "name": "Fearful",
-      "value": 0.1
+      "value": 1 / 7
     },
     {
       "name": "Disgusted",
-      "value": 0.1
+      "value": 1 / 7
     }
   ];
+
   view: any[] = [700, 400];
 
   // options
@@ -50,10 +102,7 @@ export class PieChartComponent implements OnInit {
     domain: ['#5AA454', '#C7B42C', '#AAAAAA', '#9ED0E6', '#A10A28', '#E57A44', '#764134' ]
   };
 
-  ngOnInit(): void {
-  }
-
-  constructor() {
+  constructor(private dashbaord: DashboardService) {
     // Object.assign(this, { single });
   }
 
