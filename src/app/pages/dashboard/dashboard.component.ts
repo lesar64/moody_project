@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
 
   static MOVING_AVERAGE_NUMBER = 10;
 
-  static MOVING_STD_NUMBER = 60 * 30;
+  static MOVING_STD_NUMBER = 60 * 15;
 
   constructor(private screenRecorder: ScreenRecorderService) { }
 
@@ -99,7 +99,7 @@ export class DashboardComponent implements OnInit {
       return (<any>detection.expressions.happy)
     })),
 
-    this.std(),
+    this.mean(),
 
     this.moving_values(DashboardComponent.MOVING_STD_NUMBER),
 
@@ -140,7 +140,7 @@ export class DashboardComponent implements OnInit {
       return (<any>detection.expressions.surprised)
     })),
 
-    this.std(),
+    this.mean(),
 
     this.moving_values(DashboardComponent.MOVING_STD_NUMBER),
 
@@ -175,6 +175,19 @@ export class DashboardComponent implements OnInit {
     this.mean(),
   )
 
+  public moving_std_neutral = this.screenRecorder.faceDetections$.pipe(
+    
+    map((detections) => detections.map((detection) => {
+      return (<any>detection.expressions.neutral)
+    })),
+
+    this.mean(),
+
+    this.moving_values(DashboardComponent.MOVING_STD_NUMBER),
+
+    this.std(),
+  )
+
   public mean_sad = this.screenRecorder.faceDetections$.pipe(
     
     map((detections) => detections.map((detection) => {
@@ -201,6 +214,19 @@ export class DashboardComponent implements OnInit {
 
     // Calculate moving average
     this.mean(),
+  )
+
+  public moving_std_sad = this.screenRecorder.faceDetections$.pipe(
+    
+    map((detections) => detections.map((detection) => {
+      return (<any>detection.expressions.sad)
+    })),
+
+    this.mean(),
+
+    this.moving_values(DashboardComponent.MOVING_STD_NUMBER),
+
+    this.std(),
   )
 
   public mean_angry = this.screenRecorder.faceDetections$.pipe(
@@ -231,6 +257,19 @@ export class DashboardComponent implements OnInit {
     this.mean(),
   )
 
+  public moving_std_angry = this.screenRecorder.faceDetections$.pipe(
+    
+    map((detections) => detections.map((detection) => {
+      return (<any>detection.expressions.angry)
+    })),
+
+    this.mean(),
+
+    this.moving_values(DashboardComponent.MOVING_STD_NUMBER),
+
+    this.std(),
+  )
+
   public mean_fearful = this.screenRecorder.faceDetections$.pipe(
     
     map((detections) => detections.map((detection) => {
@@ -259,6 +298,19 @@ export class DashboardComponent implements OnInit {
     this.mean(),
   )
 
+  public moving_std_fearful = this.screenRecorder.faceDetections$.pipe(
+    
+    map((detections) => detections.map((detection) => {
+      return (<any>detection.expressions.fearful)
+    })),
+
+    this.mean(),
+
+    this.moving_values(DashboardComponent.MOVING_STD_NUMBER),
+
+    this.std(),
+  )
+
   public mean_disgusted = this.screenRecorder.faceDetections$.pipe(
     
     map((detections) => detections.map((detection) => {
@@ -285,6 +337,19 @@ export class DashboardComponent implements OnInit {
 
     // Calculate moving average
     this.mean(),
+  )
+
+  public moving_std_disgusted = this.screenRecorder.faceDetections$.pipe(
+    
+    map((detections) => detections.map((detection) => {
+      return (<any>detection.expressions.disgusted)
+    })),
+
+    this.mean(),
+
+    this.moving_values(DashboardComponent.MOVING_STD_NUMBER),
+
+    this.std(),
   )
 
   private combinedObservables = [this.mean_happy, this.std_happy, 
