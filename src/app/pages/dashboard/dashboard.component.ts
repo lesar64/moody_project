@@ -352,7 +352,7 @@ export class DashboardComponent implements OnInit {
     this.std(),
   )
 
-  private combinedObservables = [this.mean_happy, this.std_happy, 
+  private gFObservables = [this.mean_happy, this.std_happy, 
     this.mean_surprised, this.std_surprised,
     this.mean_neutral, this.std_neutral,
     this.mean_sad, this.std_sad,
@@ -360,19 +360,42 @@ export class DashboardComponent implements OnInit {
     this.mean_fearful, this.std_fearful,
     this.mean_disgusted, this.std_disgusted] 
 
-  public groupFlow = combineLatest(this.combinedObservables).subscribe(
+  private groupFlow = combineLatest(this.gFObservables).subscribe(
       ([mean_happy, std_happy, mean_surprised, std_surprised,
       mean_neutral, std_neutral, mean_sad, std_sad,
       mean_angry, std_angry, mean_fearful, std_fearful,
       mean_disgusted, std_disgusted]) => {
-        let gF = [((1 - std_happy) * mean_happy), ((1 - std_surprised) * mean_surprised),
-          ((1 - std_neutral) * mean_neutral), ((1 - std_sad) * mean_sad),
-          ((1 - std_angry) * mean_angry), ((1 - std_fearful) * mean_fearful),
-          ((1 - std_disgusted) * mean_disgusted)]
-        this.gF = gF;
+        let gF = ((1 - std_happy) * mean_happy) + ((1 - std_surprised) * mean_surprised) +
+          ((1 - std_neutral) * mean_neutral) + ((1 - std_sad) * mean_sad) +
+          ((1 - std_angry) * mean_angry) + ((1 - std_fearful) * mean_fearful) +
+          ((1 - std_disgusted) * mean_disgusted)
+        this.groupflowIndicator = Math.round(gF);
       }
   )
 
-  public gF = []
+  public groupflowIndicator = 0;
+
+  private peakObservables = [this.moving_std_happy, 
+    this.moving_std_surprised,
+    this.moving_std_neutral,
+    this.moving_std_sad,
+    this.moving_std_angry,
+    this.moving_std_fearful,
+    this.moving_std_disgusted] 
+
+  private peak = combineLatest(this.peakObservables).subscribe(
+    ([moving_std_happy, moving_std_surprised,
+      moving_std_neutral, moving_std_sad,
+      moving_std_angry, moving_std_fearful,
+      moving_std_disgusted]) => {
+        let p = moving_std_happy + moving_std_surprised +
+        moving_std_neutral + moving_std_sad +
+        moving_std_angry + moving_std_fearful +
+        moving_std_disgusted;
+        this.peakIndicator = p;
+      }
+  )
+
+  peakIndicator = 0;
 
 }
