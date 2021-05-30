@@ -14,6 +14,8 @@ export class PresenterviewComponent implements OnInit {
 
   static MOVING_AVERAGE_NUMBER = 10;
   private happyness: number;
+  private standardDeviation: number = 0.4;
+  private groupflow: number =0.09;
 
   private ngUnsubscribe: Subject<boolean> = new Subject()
 
@@ -82,14 +84,37 @@ export class PresenterviewComponent implements OnInit {
   public warningColor = "darkgrey";
 
   public setWarningtext() {
-
-    if (this.happyness > 0.7) {
-      this.warningText = "Very nice meeting";
-      this.warningColor="green";
-    } else if (this.happyness <= 0.3) {
-      this.warningColor="green";
-    } else if (this.happyness > 0.3 && this.happyness < 0.7) {
-      this.warningColor="darkgrey";
+    if (this.standardDeviation <= 0.1 ) {
+      this.warningText = "It seems you lost your audience. Surprise them!";
+      this.warningColor="darkred";
+    } else {
+      if (this.groupflow <= 0.1) {
+        this.warningText = "Your audience is not on the same page. Repeat your explanations!";
+        this.warningColor="darkred";
+      } else {
+        if (this.happyness <= 0.1) {
+          this.warningText = "The mood reached the bottom line. Cheer up your audience!";
+          this.warningColor="darkred";
+        }else{
+          if (this.standardDeviation <= 0.5 ) {
+            this.warningText = "Your meeting seems to get boring. Try to be more emotional!";
+            this.warningColor="yellow";
+          } else {
+            if (this.groupflow <= 0.5) {
+              this.warningText = "It seems your audience is not on the same level. Maybe ask for ambiguities? ";
+              this.warningColor="yellow";
+            } else {
+              if (this.happyness <= 0.5) {
+                this.warningText = "The mood seems to decrease. Try to smile more! ";
+                this.warningColor="yellow";
+              }else{
+                this.warningText = "Your doing a great meeting. Keep going!";
+                this.warningColor="darkgrey"
+              }
+              }
+            }
+        }
+      }
     }
   }
 }
