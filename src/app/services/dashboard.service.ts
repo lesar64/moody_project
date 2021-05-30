@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { combineLatest } from 'rxjs';
-import { map, scan } from 'rxjs/operators';
+import { map, scan, share } from 'rxjs/operators';
 import { ScreenRecorderService } from './screen-recorder.service';
 
 @Injectable({
@@ -75,6 +75,8 @@ export class DashboardService {
 
     // Calculate moving average
     this.mean(),
+
+    share()
   );
 
   public std_happy = this.screenRecorder.faceDetections$.pipe(
@@ -116,6 +118,8 @@ export class DashboardService {
 
     // Calculate moving average
     this.mean(),
+
+    share()
   )
 
   public std_surprised = this.screenRecorder.faceDetections$.pipe(
@@ -157,6 +161,8 @@ export class DashboardService {
 
     // Calculate moving average
     this.mean(),
+
+    share()
   )
 
   public std_neutral = this.screenRecorder.faceDetections$.pipe(
@@ -198,6 +204,8 @@ export class DashboardService {
 
     // Calculate moving average
     this.mean(),
+
+    share()
   )
 
   public std_sad = this.screenRecorder.faceDetections$.pipe(
@@ -239,6 +247,8 @@ export class DashboardService {
 
     // Calculate moving average
     this.mean(),
+
+    share()
   )
 
   public std_angry = this.screenRecorder.faceDetections$.pipe(
@@ -280,6 +290,8 @@ export class DashboardService {
 
     // Calculate moving average
     this.mean(),
+
+    share()
   )
 
   public std_fearful = this.screenRecorder.faceDetections$.pipe(
@@ -321,6 +333,8 @@ export class DashboardService {
 
     // Calculate moving average
     this.mean(),
+
+    share()
   )
 
   public std_disgusted = this.screenRecorder.faceDetections$.pipe(
