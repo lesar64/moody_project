@@ -7,18 +7,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PieChartComponent implements OnInit {
 
-  single: any[];
+  single: any[] = [
+    {
+      "name": "Happy",
+      "value": 0.4
+    },
+    {
+      "name": "Surprised",
+      "value": 0.1
+    },
+    {
+      "name": "Neutral",
+      "value": 0.1
+    },
+    {
+      "name": "Sad",
+      "value": 0.1
+    },
+      {
+      "name": "Angry",
+      "value": 0.1
+    },
+    {
+      "name": "Fearful",
+      "value": 0.1
+    },
+    {
+      "name": "Disgusted",
+      "value": 0.1
+    }
+  ];
   view: any[] = [700, 400];
 
   // options
   gradient: boolean = true;
   showLegend: boolean = true;
-  showLabels: boolean = true;
+  showLabels: boolean = false;
   isDoughnut: boolean = true;
   legendPosition: string = 'below';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#5AA454', '#C7B42C', '#AAAAAA', '#9ED0E6', '#A10A28', '#E57A44', '#764134' ]
   };
 
   ngOnInit(): void {
