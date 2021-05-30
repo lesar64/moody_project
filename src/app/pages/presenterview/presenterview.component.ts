@@ -86,7 +86,7 @@ export class PresenterviewComponent implements OnInit {
   private mean_happiness$ = this.dashboard.mean_happy.subscribe(
     (value) => {
       this.happiness = value;
-      console.log(value)
+      // console.log("Value of the Happiness: " + value)
       this.setWarningtext();
     }
   )
