@@ -1,13 +1,14 @@
-<div class="container"> 
-  <div class="row">
-    <div class="col-sm">
+<div> 
+  <div>
+    <div class="indicator">
+
       <h2>GroupFlow indicator</h2>
 
-      <p>GroupFlow: {{ gF[0] + gF[1] + gF[2] + gF[3] + gF[4] + gF[5] + gF[6]}}</p>
+      <p>GroupFlow: {{ groupflowIndicator }}</p>
 
-      <br>
+      <!-- <br> -->
 
-      <table>
+      <!-- <table>
         <tr><th>Emotion</th><th>GroupFlow</th></tr>
 
         <tr><td>Happy</td><td>{{ gF[0] }}</td></tr>
@@ -18,9 +19,9 @@
         <tr><td>Fearful</td><td>{{ gF[5] }}</td></tr>
         <tr><td>Disgusted</td><td>{{ gF[6] }}</td></tr>
 
-      </table>
+      </table> -->
 
-      <br>
+      <!-- <br>
 
       <table>
         <tr><th>Emotion</th><th>mean</th><th>std</th></tr>
@@ -33,20 +34,22 @@
         <tr><td>Fearful</td><td>{{ mean_fearful | async}}</td><td>{{ std_fearful | async}}</td></tr>
         <tr><td>Disgusted</td><td>{{ mean_disgusted | async}}</td><td>{{ std_disgusted | async}}</td></tr>
 
-      </table>
+      </table> -->
     </div>
 
-    <div class="col-sm">
+    <div class="indicator">
 
       <h2>Peak Indicator</h2>
 
-      <table>
+      <p>Peak Indicator: {{ peakIndicator }}</p>
+
+      <!-- <table>
         <tr><th>Emotion</th><th>std of the last {{ curr_num }} seconds</th></tr>
 
         <tr><td>Happy</td><td>{{ moving_std_happy | async }}</td></tr>
         <tr><td>Surprised</td><td>{{ moving_std_surprised | async }}</td></tr>
 
-      </table>
+      </table> -->
 
     </div>
 

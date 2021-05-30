@@ -369,7 +369,7 @@ export class DashboardComponent implements OnInit {
           ((1 - std_neutral) * mean_neutral) + ((1 - std_sad) * mean_sad) +
           ((1 - std_angry) * mean_angry) + ((1 - std_fearful) * mean_fearful) +
           ((1 - std_disgusted) * mean_disgusted)
-        this.groupflowIndicator = Math.round(gF);
+        this.groupflowIndicator = Math.round(gF * 100) / 100;
       }
   )
 
@@ -392,7 +392,7 @@ export class DashboardComponent implements OnInit {
         moving_std_neutral + moving_std_sad +
         moving_std_angry + moving_std_fearful +
         moving_std_disgusted;
-        this.peakIndicator = p;
+        this.peakIndicator = Math.round(p * 100) / 100;
       }
   )
 
