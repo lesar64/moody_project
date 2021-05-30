@@ -11,7 +11,7 @@ export class HappyBarometerComponent implements OnInit {
 
   public get roundedValue(): number | undefined {
     if (!this.value) { return this.value; }
-    console.log(this.value);
+    // console.log(this.value);
     return Math.round(this.value * 100);
   }
 
@@ -22,8 +22,7 @@ export class HappyBarometerComponent implements OnInit {
   };
 
   constructor() {}
+  
   ngOnInit(): void {
   }
-
-
 }
