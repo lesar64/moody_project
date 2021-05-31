@@ -125,7 +125,7 @@ export class PresenterviewComponent implements OnInit {
   // private standardDeviation: number = 0.4;
   // private groupflow: number =0.09;
 
-  public warningText = "Hallo";
+  public warningText = "Hello";
 
   public warningColor = "darkgrey";
 
@@ -144,13 +144,13 @@ export class PresenterviewComponent implements OnInit {
         }else{
           if (this.peakIndicator <= 0.5 ) {
             this.warningText = "Your meeting seems to get boring. Try to be more emotional!";
-            this.warningColor="yellow";
+            this.warningColor="orange";
           } else {
             if (this.groupflowIndicator <= 0.5) {
               this.warningText = "It seems your audience is not on the same level. Maybe ask for ambiguities? ";
-              this.warningColor="yellow";
+              this.warningColor="orange";
             } else {
-              if (this.happiness <= 0.5) {
+              if (this.happiness <= 0.2) {
                 this.warningText = "The mood seems to decrease. Try to smile more! ";
                 this.warningColor="yellow";
               }else{
