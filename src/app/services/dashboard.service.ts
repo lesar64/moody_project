@@ -10,7 +10,7 @@ export class DashboardService {
 
   static MOVING_AVERAGE_NUMBER = 10;
 
-  static MOVING_STD_NUMBER = 60 * 10;
+  static MOVING_STD_NUMBER = 60 * 6;
 
   constructor(private screenRecorder: ScreenRecorderService) { }
 
