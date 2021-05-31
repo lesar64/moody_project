@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
 
   trackNow(): void {
     this.screenRecorder.startRecording().then(() => {
-      this.router.navigateByUrl('barometer');
+      this.router.navigateByUrl('presenterview');
     });
   }
 
