@@ -154,7 +154,7 @@ export class PresenterviewComponent implements OnInit {
                 this.warningText = "The mood seems to decrease. Try to smile more! ";
                 this.warningColor="orange";
               }else{
-                this.warningText = "Your doing a great meeting. Keep going!";
+                this.warningText = "Your doing a great job. Keep going!";
                 this.warningColor="darkgrey"
               }
               }

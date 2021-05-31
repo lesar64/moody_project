@@ -27,6 +27,7 @@
     "face-api.js": "^0.22.2",
     "file-saver": "^2.0.5",
     "gauge": "^3.0.0",
+    "mathjs": "^9.4.1",
     "moment": "^2.29.1",
     "ngx": "^2.4.0",
     "ngx-gauge": "^3.0.0",
