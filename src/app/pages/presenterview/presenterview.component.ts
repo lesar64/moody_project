@@ -130,27 +130,27 @@ export class PresenterviewComponent implements OnInit {
   public warningColor = "darkgrey";
 
   public setWarningtext() {
-    if (this.peakIndicator <= 0.1 ) {
+    if (this.peakIndicator <= 0.3 ) {
       this.warningText = "It seems you lost your audience. Surprise them!";
       this.warningColor="darkred";
     } else {
-      if (this.groupflowIndicator <= 0.1) {
+      if (this.groupflowIndicator <= 0.50) {
         this.warningText = "Your audience is not on the same page. Repeat your explanations!";
         this.warningColor="darkred";
       } else {
-        if (this.happiness <= 0.1) {
+        if (this.happiness <= 0.01) {
           this.warningText = "The mood reached the bottom line. Cheer up your audience!";
           this.warningColor="darkred";
         }else{
-          if (this.peakIndicator <= 0.5 ) {
+          if (this.peakIndicator <= 0.4 ) {
             this.warningText = "Your meeting seems to get boring. Try to be more emotional!";
             this.warningColor="orange";
           } else {
-            if (this.groupflowIndicator <= 0.5) {
+            if (this.groupflowIndicator <= 0.67) {
               this.warningText = "It seems your audience is not on the same level. Maybe ask for ambiguities? ";
               this.warningColor="orange";
             } else {
-              if (this.happiness <= 0.2) {
+              if (this.happiness <= 0.04) {
                 this.warningText = "The mood seems to decrease. Try to smile more! ";
                 this.warningColor="orange";
               }else{
