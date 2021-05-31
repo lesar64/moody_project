@@ -152,7 +152,7 @@ export class PresenterviewComponent implements OnInit {
             } else {
               if (this.happiness <= 0.2) {
                 this.warningText = "The mood seems to decrease. Try to smile more! ";
-                this.warningColor="yellow";
+                this.warningColor="orange";
               }else{
                 this.warningText = "Your doing a great meeting. Keep going!";
                 this.warningColor="darkgrey"
