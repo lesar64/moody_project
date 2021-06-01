@@ -7,23 +7,33 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./happy-barometer.component.scss']
 })
 export class HappyBarometerComponent implements OnInit {
+
+  @Input() label?: string;
   @Input() value?: number;
+  @Input() orangeThreshold?: number;
+  @Input() greenThreshold?: number;
+  thresholdConfig = {};
+
 
   public get roundedValue(): number | undefined {
     if (!this.value) { return this.value; }
-    console.log(this.value);
+    // console.log(this.value);
     return Math.round(this.value * 100);
   }
 
-  thresholdConfig = {
-    0: {color: 'red'},
-    40: {color: 'orange'},
-    75.5: {color: 'green'}
-  };
+  // thresholdConfig = {
+  //   0: {color: 'red'},
+  //   orangeThreshold: {color: 'orange'},
+  //   greenThreshold: {color: 'green'}
+  // };
 
   constructor() {}
+
   ngOnInit(): void {
+    this.thresholdConfig = {
+      0: {color: 'red'},
+      [this.orangeThreshold]: {color: 'orange'},
+      [this.greenThreshold]: {color: 'green'}
+    };
   }
-
-
 }
