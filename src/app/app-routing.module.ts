@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
 import { AnalyticsComponent } from './pages/analytics/analytics.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MoodBarometerComponent } from './pages/mood-barometer/mood-barometer.component';
@@ -21,7 +21,7 @@ const routes: Routes = [{
 }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})], /*RouterModule.forRoot(routes)*/
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

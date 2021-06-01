@@ -14,37 +14,37 @@ export class DashboardService {
 
   constructor(private screenRecorder: ScreenRecorderService) { }
 
-  ngOnInit(): void { }
+  // ngOnInit(): void { }
 
   public curr_num = DashboardService.MOVING_STD_NUMBER;
 
   // Helper method to log values to the console
   console = (text: string) => map(arr => {
-    console.log(text)
-    console.log(arr)
-    return arr
-  });
+    console.log(text);
+    console.log(arr);
+    return arr;
+  })
 
   // Calculate std of all people for one emotion
   std = () => map((arr: Array<number>) => {
-    let mean = arr.reduce((acc, curr)=>{
-      return acc + curr
+    let mean = arr.reduce((acc, curr) => {
+      return acc + curr;
     }, 0) / arr.length;
 
     // Assigning (value - mean) ^ 2 to every array item
-    arr = arr.map((k)=>{
-      return (k - mean) ** 2
-    })
+    arr = arr.map((k) => {
+      return (k - mean) ** 2;
+    });
 
     // Calculating the sum of updated array
-    let sum = arr.reduce((acc, curr)=> acc + curr, 0);
+    let sum = arr.reduce((acc, curr) => acc + curr, 0);
 
     // Calculating the variance
-    let variance = sum / arr.length
+    let variance = sum / arr.length;
 
     // Returning the standard deviation
-    return Math.sqrt(sum / arr.length)
-  });
+    return Math.sqrt(sum / arr.length);
+  })
 
   // Moving values for the next 10 occurences
   moving_values = (length) => scan((acc, curr) => {
@@ -57,16 +57,16 @@ export class DashboardService {
     }
 
     return acc;
-  }, []);
+  }, [])
 
   // Calculate mean
   mean = () => map((arr: Array<number>) =>
-    arr.reduce((acc, current) => acc + current, 0) / arr.length);
+    arr.reduce((acc, current) => acc + current, 0) / arr.length)
 
   public mean_happy = this.screenRecorder.faceDetections$.pipe(
 
     map((detections) => detections.map((detection) => {
-      return (<any>detection.expressions.happy)
+      return (<any>detection.expressions.happy);
     })),
 
     this.mean(),

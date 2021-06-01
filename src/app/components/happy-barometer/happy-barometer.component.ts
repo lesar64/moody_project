@@ -35,6 +35,5 @@ export class HappyBarometerComponent implements OnInit {
       [this.orangeThreshold]: {color: 'orange'},
       [this.greenThreshold]: {color: 'green'}
     };
-    console.log(this.thresholdConfig);
   }
 }
