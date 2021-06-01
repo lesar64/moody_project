@@ -130,7 +130,7 @@ export class PresenterviewComponent implements OnInit {
   public warningColor = "darkgrey";
 
   public setWarningtext() {
-    if (this.peakIndicator <= 0.3 ) {
+    if (this.peakIndicator <= 0.25 ) {
       this.warningText = "It seems you lost your audience. Surprise them!";
       this.warningColor="darkred";
     } else {
@@ -142,7 +142,7 @@ export class PresenterviewComponent implements OnInit {
           this.warningText = "The mood reached the bottom line. Cheer up your audience!";
           this.warningColor="darkred";
         }else{
-          if (this.peakIndicator <= 0.4 ) {
+          if (this.peakIndicator <= 0.33 ) {
             this.warningText = "Your meeting seems to get boring. Try to be more emotional!";
             this.warningColor="orange";
           } else {
