@@ -18,6 +18,7 @@ import { PresenterviewComponent } from './pages/presenterview/presenterview.comp
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { HappyBarometerComponent } from './components/happy-barometer/happy-barometer.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
     AppRoutingModule,
     NgxGaugeModule,
     NgxChartsModule,
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
