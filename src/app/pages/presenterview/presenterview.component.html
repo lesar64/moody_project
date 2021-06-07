@@ -1,14 +1,20 @@
-<div class="diagramme">
 
-  <div class="diagramm"><app-happy-barometer label="Peak" [value]="peakIndicator" orangeThreshold=25 greenThreshold=33></app-happy-barometer></div>
+<div>
+  
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div class="diagramm"><app-happy-barometer fxLayoutAlign="center" label="Peak" [value]="peakIndicator" orangeThreshold=25 greenThreshold=33></app-happy-barometer></div>
 
-  <div class="diagramm"><app-happy-barometer label="GroupFlow" [value]="groupflowIndicator" orangeThreshold=50 greenThreshold=67></app-happy-barometer> </div>
+    <div class="diagramm"><app-happy-barometer fxLayoutAlign="center" label="GroupFlow" [value]="groupflowIndicator" orangeThreshold=50 greenThreshold=67></app-happy-barometer></div>
 
-  <div class="diagramm"><app-happy-barometer label="Happiness" [value]="happiness" orangeThreshold=1 greenThreshold=4></app-happy-barometer></div>
+    <div class="diagramm"><app-happy-barometer fxLayoutAlign="center" label="Happiness" [value]="happiness" orangeThreshold=1 greenThreshold=4></app-happy-barometer></div>
+  </div>
 
+  <br>
 
-</div>
+  <div class="container">
+    <div class="warnings" style="background-color:{{warningColor}}">
+      <div class="text-warning">{{warningText}}</div>
+    </div>
+  </div>
 
-<div class="warnings" style="background-color:{{warningColor}}">
-  <div class="text-warning">{{warningText}}</div>
 </div>

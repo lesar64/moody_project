@@ -6,20 +6,21 @@
 <script> angular.module('yourApp', ['angularjs-gauge']);</script>
 <ng-gauge size="200" type="full" thick="5" min="0" max="120" value="68.2" cap="round" label="Speed"  foreground-color="#ffcc66" background-color="rgba(255,255,255, 0.4)" append="mph"></ng-gauge>
 -->
-<ngx-gauge style ="color:white"
-           size="300"
-           type="full"
-           thick="20"
-           min="0"
-           max="100"
-           cap="round"
-           label="{{ label }}"
-           foreground-color="white"
-           background-color="rgba(255,255,255, 0.4)"
-           append="%"
-           [value]="roundedValue"
-           [thresholds]="thresholdConfig">
-
+<ngx-gauge 
+  (window:resize)="onResize($event)"
+  style ="color:white"
+  type="full"
+  thick="20"
+  min="0"
+  max="100"
+  cap="round"
+  label="{{ label }}"
+  foreground-color="white"
+  background-color="rgba(255,255,255, 0.4)"
+  append="%"
+  [value]="roundedValue"
+  [thresholds]="thresholdConfig"
+  [size]="size">
 </ngx-gauge>
 
 <!--<ngx-gauge [type]="gaugeType"-->
