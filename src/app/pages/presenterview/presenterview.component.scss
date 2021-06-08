@@ -1,43 +1,45 @@
-.presenterview {
-  &__title {
-    color: #45a29e;
-    font-size: 5rem;
-  }
+// .presenterview {
+//   &__title {
+//     color: #45a29e;
+//     font-size: 5rem;
+//   }
 
-  &__description {
-    color: #c5c6c7;
-    max-width: 45rem;
-    margin-top: 1.5rem;
-    line-height: 1.5rem;
-  }
+//   &__description {
+//     color: #c5c6c7;
+//     max-width: 45rem;
+//     margin-top: 1.5rem;
+//     line-height: 1.5rem;
+//   }
 
-  &__button {
-    margin-top: 2rem;
-  }
-}
-.number {
-color: white;}
+//   &__button {
+//     margin-top: 2rem;
+//   }
+// }
 
-.diagramme{
-  display: inline-block;
+.container {
+  min-height: 100%;
+  width: 96%;
+  margin-left:2%;
+  margin-right:2%;
 }
-.diagramm{
-  margin: 100px;
-  margin-bottom: 40px;
-  display: inline-block;
+
+.diagramm {
+  width: 100%;
+  // margin-bottom: 18%;
 }
+
 .warnings{
-
-  height: 100px;
+  // height: 100px;
   margin-left:300px;
   margin-right:300px;
-  border-radius: 50px;
+  border-radius: 30px;
   color: white;
   display:flex;
   display: -webkit-flex;
   font-size: 40px;
   vertical-align: middle;
 }
+
 .text-warning{
   text-align: center;
   margin: auto;
