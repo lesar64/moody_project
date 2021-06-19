@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { AnalyticsComponent } from './pages/analytics/analytics.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MoodBarometerComponent } from './pages/mood-barometer/mood-barometer.component';
@@ -18,6 +19,9 @@ const routes: Routes = [{
 }, {
   path: 'analytics',
   component: AnalyticsComponent,
+}, {
+  path: 'pie-chart',
+  component: PieChartComponent,
 }];
 
 @NgModule({
