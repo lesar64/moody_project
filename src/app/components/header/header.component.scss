@@ -17,9 +17,9 @@
 
   &__title {
     margin-left: 2rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     margin-bottom: 1.5rem;
-    height: 90%;
+    height: 2rem;
   }
 
   &__home {
@@ -28,4 +28,8 @@
     height: 80%;
     cursor: pointer;
   }
+}
+
+ul li {
+  list-style: none;
 }

@@ -1,6 +1,49 @@
-<header class="header">
+<!-- <header class="header">
   <img class="header__title" src="assets/moody_logo.svg" >
 
-<!--  <a class="header__home" [routerLink]="''">Home</a>-->
+    <a class="header__home" [routerLink]="''">Home</a>
     <img class="header__home" [routerLink]="''" src="assets/home_grey.svg" >
-</header>
+</header> -->
+
+<mat-toolbar>
+  <mat-toolbar-row class="header">
+    <button mat-icon-button (click)="toggleSideBar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span>
+        <img class="header__title" src="assets/moody_logo.svg" >
+    </span>
+    
+
+    <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+        <ul fxLayout="row" fxLayoutGap="20px">
+            <li>
+                <!-- <img class="header__home" [routerLink]="''" src="assets/home_grey.svg" > -->
+            </li>
+            <li>
+                <button mat-icon-button>
+                    <mat-icon>settings</mat-icon>
+                </button>
+            </li>
+            <li>
+                <button mat-icon-button>
+                    <mat-icon>help_outline</mat-icon>
+                </button>
+            </li>
+            <!-- <li>
+                <button mat-button [matMenuTriggerFor]="menu">
+                    <mat-icon>person_outline</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon>exit_to_app</mat-icon>
+                        Sign out
+                    </button>
+                </mat-menu>
+
+            </li> -->
+        </ul>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
