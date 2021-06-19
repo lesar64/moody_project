@@ -17,7 +17,7 @@ import { AnalyticsComponent } from './pages/analytics/analytics.component';
 import { PresenterviewComponent } from './pages/presenterview/presenterview.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { HappyBarometerComponent } from './components/happy-barometer/happy-barometer.component';
-import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { PieChartComponent } from './pages/pie-chart/pie-chart.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
