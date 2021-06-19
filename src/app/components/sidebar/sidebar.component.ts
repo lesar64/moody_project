@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ScreenRecorderService } from 'src/app/services/screen-recorder.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,17 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private screenRecorder: ScreenRecorderService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  start() {
-    console.log("Start button was pressed.")
+  // trackNow()
+  start(): void {
+    // console.log("Start button was pressed.")
+
+    this.screenRecorder.startRecording().then(() => {
+      this.router.navigateByUrl('presenterview');
+    });
   }
 
   stop() {
-    console.log("Stop button was pressed.")
+    // console.log("Stop button was pressed.")
+
+    this.screenRecorder.stopRecording().then(() => {
+      this.router.navigateByUrl('analytics');
+    });
   }
 
 }
