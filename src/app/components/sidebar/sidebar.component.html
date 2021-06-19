@@ -1,0 +1,31 @@
+<mat-nav-list>
+    <div class="profile-card">
+        <div class="header">
+            <h2>Moody Dashboard</h2>
+        </div>
+        <mat-icon class="insights" >insights</mat-icon>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>Pages</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">Home</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/presenterview">Dashboard</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/analytics">Analytics</a>
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>Tools</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" role="button" (click)="start()">
+        <mat-icon>play_arrow</mat-icon>
+        Start Recoding
+    </a>
+
+    <a mat-list-item routerLinkActive="list-item-active" role="button" (click)="stop()">
+        <mat-icon>stop</mat-icon>
+        Stop Recording
+    </a>
+
+</mat-nav-list>
