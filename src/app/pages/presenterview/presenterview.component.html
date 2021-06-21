@@ -1,17 +1,26 @@
-<div class="presenterview">
-  <h2 class="presenterview__title">Dashboard</h2>
 
-  <!-- <div class = emotions>
-    <h3 class="presenterview__description">Sadness </h3>
-    <div class ="number"> 5</div>
-    <h3 class="presenterview__description">Happiness </h3>
-    <div class ="number"> 93</div>
-    <h3 class="presenterview__description">Emotion 3 </h3>
-    <div class ="number"> -12</div>
-    <h3 class="presenterview__description">Emotion 4 </h3>
-    <div class ="number"> 0</div>
-  </div> -->
+<div>
+  
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div class="diagramm">
+      <app-happy-barometer fxLayoutAlign="center" label="Peak" [value]="peakIndicator" orangeThreshold=25 greenThreshold=33></app-happy-barometer>
+    </div>
+
+    <div class="diagramm">
+      <app-happy-barometer fxLayoutAlign="center" label="GroupFlow" [value]="groupflowIndicator" orangeThreshold=50 greenThreshold=67></app-happy-barometer>
+    </div>
+
+    <div class="diagramm">
+      <app-happy-barometer fxLayoutAlign="center" label="Happiness" [value]="happiness" orangeThreshold=1 greenThreshold=4></app-happy-barometer>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="container">
+    <div class="warnings" style="background-color:{{warningColor}}">
+      <div class="text-warning">{{warningText}}</div>
+    </div>
+  </div>
 
 </div>
-
-<app-active-emotions></app-active-emotions>

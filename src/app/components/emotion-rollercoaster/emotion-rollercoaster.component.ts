@@ -19,7 +19,7 @@ export class EmotionRollercoasterComponent implements AfterViewInit {
   public get mappedValues(): { timestamp: number, values: number[] }[] {
     const mapped: { timestamp: number, values: number[] }[] = [];
     const steps = Math.floor(this.values.length / this.MAX_CANDLESTICKS);
-    
+
     for (let i = 0; i < this.values.length; i += steps) {
       mapped.push({
         timestamp: this.values[i].timestamp,

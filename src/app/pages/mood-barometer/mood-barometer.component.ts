@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { filter, first, map, scan, takeUntil, tap } from 'rxjs/operators';
+import { filter, first, map, scan, take, takeUntil, tap } from 'rxjs/operators';
 import { mapIndividualScore, scanMovingAverage } from 'src/app/services/helper.functions';
 import { ScreenRecorderService } from 'src/app/services/screen-recorder.service';
 import { mean, std, max, min } from 'mathjs';
@@ -11,6 +11,7 @@ import { mean, std, max, min } from 'mathjs';
   templateUrl: './mood-barometer.component.html',
   styleUrls: ['./mood-barometer.component.scss']
 })
+
 export class MoodBarometerComponent implements OnInit, OnDestroy {
 
   public averageValue$ = this.screenRecorder.faceDetections$.pipe(
@@ -48,22 +49,26 @@ export class MoodBarometerComponent implements OnInit, OnDestroy {
     map((diff) => diff > 0.25),
   )
 
-  private ngUnsubscribe: Subject<boolean> = new Subject()
+  private ngUnsubscribe: Subject<boolean> = new Subject();
 
   constructor(private screenRecorder: ScreenRecorderService,
-              private router: Router) { }
+              private router: Router) {
 
-  ngOnDestroy() {
+  }
+
+
+  ngOnDestroy(): void{
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
 
   ngOnInit(): void {
+
     if (this.screenRecorder.record$.value.type === 'stop') {
+
       this.navigateToHome();
       return;
     }
-
     this.screenRecorder.record$
     .pipe(
       filter(record => record.type === 'stop'),
@@ -84,5 +89,4 @@ export class MoodBarometerComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('presenterview');
 
   }
-
 }

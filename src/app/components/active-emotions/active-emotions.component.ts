@@ -13,14 +13,14 @@ export class ActiveEmotionsComponent implements OnInit {
   @Input() videoRef?: ElementRef;
 
   constructor(private screenRecorder: ScreenRecorderService) {
-    
+
   }
 
-  ngOnInit() {
-    this.screenRecorder.faceDetections$.subscribe(faceDetections$ => this.faceDetections = faceDetections$)
+  ngOnInit(): void {
+    this.screenRecorder.faceDetections$.subscribe(faceDetections$ => this.faceDetections = faceDetections$);
   }
 
   public roundEmotion(emotion: number): number {
-    return Math.round(emotion * 100) / 100
+    return Math.round(emotion * 100) / 100;
   }
 }

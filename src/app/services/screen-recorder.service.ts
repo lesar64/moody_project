@@ -1,6 +1,6 @@
 import { ElementRef, Injectable } from '@angular/core';
 import { BehaviorSubject, NEVER, Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { share, switchMap } from 'rxjs/operators';
 import { FaceDetectionService } from './face-detection.service';
 import * as faceapi from 'face-api.js';
 
@@ -15,23 +15,25 @@ export class ScreenRecorderService {
     switchMap(e => {
       switch (e.type) {
         case 'start': return this.faceDetection.detectAll(e.videoRef.nativeElement);
-        default: return NEVER
+        default: return NEVER;
       }
     }),
+
+    share(),
   );
 
   private videoRef?: ElementRef;
 
   constructor(private faceDetection: FaceDetectionService) { }
 
-  public registerVideo(videoRef: ElementRef) {
+  public registerVideo(videoRef: ElementRef): void {
     this.videoRef = videoRef;
   }
 
   public async startRecording(): Promise<void> {
     if (!this.videoRef) { return; }
 
-    this.videoRef.nativeElement.srcObject = await (<any>navigator.mediaDevices).getDisplayMedia({
+    this.videoRef.nativeElement.srcObject = await (navigator.mediaDevices as any).getDisplayMedia({
       audio: false,
     });
 

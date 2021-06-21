@@ -37,7 +37,7 @@ export class AnalyticsComponent implements OnInit {
     if (!this.faceDetection.detections?.length) { return undefined; }
 
     const fileToSave = new Blob([JSON.stringify(this.faceDetection.detections)], {
-      type: "json",
+      type: 'json',
     });
 
     const time = new Date();

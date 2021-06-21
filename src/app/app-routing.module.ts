@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
 import { AnalyticsComponent } from './pages/analytics/analytics.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MoodBarometerComponent } from './pages/mood-barometer/mood-barometer.component';
-import { Presenterview} from './pages/presenterview/presenterview.component';
+import { PresenterviewComponent } from './pages/presenterview/presenterview.component';
+
 
 const routes: Routes = [{
   path: '',
@@ -11,16 +12,16 @@ const routes: Routes = [{
 }, {
   path: 'barometer',
   component: MoodBarometerComponent
-},{
+}, {
    path: 'presenterview',
-   component: Presenterview
- },{
+   component: PresenterviewComponent
+}, {
   path: 'analytics',
   component: AnalyticsComponent,
 }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})], /*RouterModule.forRoot(routes)*/
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
