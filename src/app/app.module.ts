@@ -19,8 +19,15 @@ import { MoodSwingComponent } from './components/mood-swing/mood-swing.component
 import { PresenterviewComponent } from './pages/presenterview/presenterview.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { HappyBarometerComponent } from './components/happy-barometer/happy-barometer.component';
-import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { PieChartComponent } from './pages/pie-chart/pie-chart.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -40,6 +47,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     DashboardComponent,
     HappyBarometerComponent,
     PieChartComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +56,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     NgxGaugeModule,
     NgxChartsModule,
     FlexLayoutModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

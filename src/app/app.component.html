@@ -1,6 +1,18 @@
-<app-header></app-header>
+<app-header (toggleSideBarForMe)="sideBarToggler()"></app-header>
 <app-screen-recorder></app-screen-recorder>
 
-<div class="app__body">
-  <router-outlet></router-outlet>
-</div>
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="sideBarOpen">
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+
+  <mat-drawer-content>
+
+    <div class="app__body">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-drawer-content>
+</mat-drawer-container>
+
+
