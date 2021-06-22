@@ -45,7 +45,7 @@ export class ScreenRecorderService {
     this.record$.next({ type: 'start', videoRef: this.videoRef });
   }
 
-  public stopRecording(): void {
+  public stopRecording(): Promise<void> {
     if (!this.videoRef) { return; }
 
     const tracks = this.videoRef.nativeElement.srcObject.getTracks();
