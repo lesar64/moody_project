@@ -36,7 +36,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     AnalyticsComponent,
     GroupflowComponent,
     MoodSwingComponent,
-    Presenterview,
     PresenterviewComponent,
     DashboardComponent,
     HappyBarometerComponent,

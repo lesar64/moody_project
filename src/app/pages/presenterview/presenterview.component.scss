@@ -30,13 +30,15 @@
 
 .warnings{
   // height: 100px;
-  margin-left:300px;
-  margin-right:300px;
+  //margin-left:300px;
+  //margin-right:300px;
+  //width: auto;
+  max-width: 60vw;
   border-radius: 30px;
   color: white;
-  display:flex;
+  display: flex;
   display: -webkit-flex;
-  font-size: 40px;
+  font-size: 2rem;
   vertical-align: middle;
 }
 

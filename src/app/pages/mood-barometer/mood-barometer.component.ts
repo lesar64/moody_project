@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { filter, first, map, scan, take, takeUntil, tap } from 'rxjs/operators';
+import { filter, first, map, scan, takeUntil} from 'rxjs/operators';
 import { mapIndividualScore, scanMovingAverage } from 'src/app/services/helper.functions';
 import { ScreenRecorderService } from 'src/app/services/screen-recorder.service';
 import { mean, std, max, min } from 'mathjs';
@@ -82,6 +82,7 @@ export class MoodBarometerComponent implements OnInit, OnDestroy {
   }
 
   private onFinishRecording(): void {
+    console.log('onFinishRecording')
     this.router.navigateByUrl('analytics');
   }
 

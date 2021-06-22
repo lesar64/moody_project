@@ -20,6 +20,7 @@
   &__body {
     display: flex;
     height: calc(100vh - 3rem);
+    //resize: none;
     width: 100%;
     padding-left: 2rem;
     padding-right: 2rem;
