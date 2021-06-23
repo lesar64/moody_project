@@ -36,10 +36,13 @@
   max-width: 60vw;
   border-radius: 30px;
   color: white;
-  display: flex;
+  //display: flex;
+  display: inline;
   display: -webkit-flex;
   font-size: 2rem;
   vertical-align: middle;
+  border-style: solid;
+  border-width: 4px;
 }
 
 .text-warning{

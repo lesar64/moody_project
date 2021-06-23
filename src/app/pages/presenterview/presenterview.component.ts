@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ScreenRecorderService } from 'src/app/services/screen-recorder.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
-import { filter, map, scan, take, takeUntil, tap } from 'rxjs/operators';
+import { filter, take, takeUntil} from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import 'chartjs-adapter-moment';
 
@@ -57,6 +57,8 @@ export class PresenterviewComponent implements OnInit, OnDestroy {
     });
 
 
+  public happiness?: number;
+
   private mean_happiness$ = this.dashboard.mean_happy.subscribe(
     (value) => {
       this.happiness = value;
@@ -65,7 +67,6 @@ export class PresenterviewComponent implements OnInit, OnDestroy {
     }
   );
 
-  public happiness?: number;
 
 //   static MOVING_AVERAGE_NUMBER = 10;
 
@@ -101,7 +102,7 @@ export class PresenterviewComponent implements OnInit, OnDestroy {
 
   public warningText = 'Hello';
 
-  public warningColor = 'darkgrey';
+  public warningColor = 'white';
 
   ngOnDestroy(): void{
     this.ngUnsubscribe.next();
@@ -133,15 +134,15 @@ export class PresenterviewComponent implements OnInit, OnDestroy {
   public setWarningtext() {
     if (this.peakIndicator <= 0.25 ) {
       this.warningText = 'It seems you lost your audience. Surprise them!';
-      this.warningColor = 'darkred';
+      this.warningColor = 'red';
     } else {
       if (this.groupflowIndicator <= 0.50) {
         this.warningText = 'Your audience is not on the same page. Repeat your explanations!';
-        this.warningColor = 'darkred';
+        this.warningColor = 'red';
       } else {
         if (this.happiness <= 0.01) {
           this.warningText = 'The mood reached the bottom line. Cheer up your audience!';
-          this.warningColor = 'darkred';
+          this.warningColor = 'red';
         }else{
           if (this.peakIndicator <= 0.33 ) {
             this.warningText = 'Your meeting seems to get boring. Try to be more emotional!';
@@ -156,7 +157,7 @@ export class PresenterviewComponent implements OnInit, OnDestroy {
                 this.warningColor = 'orange';
               }else{
                 this.warningText = 'Your doing a great job. Keep going!';
-                this.warningColor = 'darkgrey';
+                this.warningColor = 'white';
               }
               }
             }
