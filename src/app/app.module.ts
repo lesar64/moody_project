@@ -26,6 +26,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
+import { AllFacesComponent } from './components/all-faces/all-faces.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { MatMenuModule } from '@angular/material/menu';
     DashboardComponent,
     HappyBarometerComponent,
     PieChartComponent,
-    SidebarComponent
+    SidebarComponent,
+    AllFacesComponent
   ],
   imports: [
     BrowserModule,
