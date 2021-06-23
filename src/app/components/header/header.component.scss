@@ -4,6 +4,7 @@
   height: 3rem;
   background-color: #232427; /* #0b0c10 */
   border-bottom: 4px solid #45a29e; /* #1f2833 */
+  padding-left: 0.5rem;
 
   display: flex;
   align-items: center;
@@ -16,7 +17,7 @@
   }
 
   &__title {
-    margin-left: 2rem;
+    margin-left: 1rem;
     margin-top: 2rem;
     margin-bottom: 1.5rem;
     height: 2rem;
