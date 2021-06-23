@@ -5,7 +5,7 @@ import { AnalyticsComponent } from './pages/analytics/analytics.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MoodBarometerComponent } from './pages/mood-barometer/mood-barometer.component';
 import { PresenterviewComponent } from './pages/presenterview/presenterview.component';
-import {AllFacesComponent} from "./components/all-faces/all-faces.component";
+import {AllFacesComponent} from './components/all-faces/all-faces.component';
 
 
 const routes: Routes = [{
