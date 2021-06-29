@@ -4,12 +4,12 @@
   <tr><th>Person</th><th>Angry</th><th>Disgusted</th><th>Happy</th><th>Fearful</th><th>Neutral</th><th>Sad</th><th>Surprised</th></tr>
 
   <tr *ngFor="let detection of faceDetections; let i = index">
-    <td><!--
+    <td>
       <app-video-capture [videoRef]="videoRef"
                          [width]="detection?.detection?.box?.width"
                          [height]="detection?.detection?.box?.height"
                          [xMin]="detection?.detection?.box?.left"
-                         [yMin]="detection?.detection?.box?.top"></app-video-capture> -->
+                         [yMin]="detection?.detection?.box?.top"></app-video-capture>
       <p>Person {{ i + 1 }}</p>
     </td>
     <td [innerHTML]="roundEmotion(detection.expressions.angry)"></td>

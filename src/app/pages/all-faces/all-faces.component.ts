@@ -1,6 +1,5 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { ScreenRecorderService } from 'src/app/services/screen-recorder.service';
-import * as faceapi from 'face-api.js';
 
 @Component({
   selector: 'app-all-faces',
@@ -9,14 +8,10 @@ import * as faceapi from 'face-api.js';
 })
 export class AllFacesComponent implements OnInit {
 
-  @Input() faceDetections?: faceapi.WithFaceExpressions<{ detection: faceapi.FaceDetection; }>[];
-  @Input() videoRef?: ElementRef;
+  constructor(private screenRecorder: ScreenRecorderService) { }
 
-  constructor() { }
-public roundEmotion(emotion: number): number {
-  return Math.round(emotion * 100) / 100
-}
   ngOnInit(): void {
   }
-
+  public faceDetections$ = this.screenRecorder.faceDetections$;
+  public recordChange$ = this.screenRecorder.record$;
 }
