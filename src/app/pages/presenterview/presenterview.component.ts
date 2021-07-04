@@ -19,17 +19,6 @@ export class PresenterviewComponent implements OnInit, OnDestroy {
 
   private ngUnsubscribe: Subject<boolean> = new Subject();
 
-  // public data: { timestamp: number, groupFlow: number, peak: number, happy: number }[] = []
-
-  // public data$ = interval(1000).pipe(
-  //   this.data.push({
-  //     timestamp: Date.now(),
-  //     groupFlow: this.groupflowIndicator,
-  //     peak: this.peakIndicator,
-  //     happy: this.happiness
-  //   });
-  // )
-
   public groupFlowIndicator?: number;
 
   public groupFlowIndicator$ = this.dashboard.groupFlowIndicatorLatest$.subscribe((x) => (this.groupFlowIndicator = x))
@@ -37,6 +26,8 @@ export class PresenterviewComponent implements OnInit, OnDestroy {
   public peakIndicator?: number;
 
   public peakIndicator$ = this.dashboard.peakIndicatorLatest$.subscribe((x) => (this.peakIndicator = x))
+
+  public happiness?: number;
 
   private mean_happiness$ = this.dashboard.mean_happy.subscribe(
     (value) => {
@@ -50,40 +41,6 @@ export class PresenterviewComponent implements OnInit, OnDestroy {
       });
     }
   );
-
-  public happiness?: number;
-
-//   static MOVING_AVERAGE_NUMBER = 10;
-
-//   public averageHappiness$ = this.screenRecorder.faceDetections$.pipe(
-//     map((detections) => detections.map((detection) => {
-//       return (<any>detection).expressions.happy;
-//     })),
-//     map(arr => arr.reduce((acc, current) => acc + current, 0) / arr.length),
-//     scan((acc, curr) => {
-//       if (!curr) {
-//         return acc;
-//       }
-
-//       acc.push(curr);
-
-//       if (acc.length > PresenterviewComponent.MOVING_AVERAGE_NUMBER) {
-//         acc.shift();
-//       }
-
-//       return acc;
-//     }, []),
-
-// // Calculate moving average
-//     map(arr => arr.reduce((acc, current) => acc + current, 0) / arr.length),
-//     tap((value) => {
-//       this.happyness = value;
-//       this.setWarningtext();
-//     })
-//   );
-
-  // private standardDeviation: number = 0.4;
-  // private groupflow: number =0.09;
 
   public warningText = 'Hello';
 
