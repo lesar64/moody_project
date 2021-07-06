@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { combineLatest } from 'rxjs';
 import { DashboardService } from 'src/app/services/dashboard.service';
 
 @Component({
   selector: 'app-pie-chart',
   templateUrl: './pie-chart.component.html',
-  styleUrls: ['./pie-chart.component.scss']
+  styleUrls: ['./pie-chart.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PieChartComponent implements OnInit {
 
