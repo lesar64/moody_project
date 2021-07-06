@@ -45,11 +45,11 @@ export class SidebarComponent implements OnInit {
         type: 'json',
       });
 
-      let peakFile = new Blob([JSON.stringify(this.dashboard.groupFlow)], {
+      let peakFile = new Blob([JSON.stringify(this.dashboard.peak)], {
         type: 'json',
       });
 
-      let happyFile = new Blob([JSON.stringify(this.dashboard.groupFlow)], {
+      let happyFile = new Blob([JSON.stringify(this.dashboard.happy)], {
         type: 'json',
       });
 
