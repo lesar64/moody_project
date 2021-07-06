@@ -14,6 +14,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BarometerComponent } from './components/barometer/barometer.component';
 import { AnalyticsComponent } from './pages/analytics/analytics.component';
+import { GroupflowComponent } from './components/groupflow/groupflow.component';
+import { MoodSwingComponent } from './components/mood-swing/mood-swing.component';
 import { PresenterviewComponent } from './pages/presenterview/presenterview.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { HappyBarometerComponent } from './components/happy-barometer/happy-barometer.component';
@@ -26,6 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
+import { AllFacesComponent } from './pages/all-faces/all-faces.component';
 
 @NgModule({
   declarations: [
@@ -39,11 +42,14 @@ import { MatMenuModule } from '@angular/material/menu';
     HomeComponent,
     BarometerComponent,
     AnalyticsComponent,
+    GroupflowComponent,
+    MoodSwingComponent,
     PresenterviewComponent,
     DashboardComponent,
     HappyBarometerComponent,
     PieChartComponent,
-    SidebarComponent
+    SidebarComponent,
+    AllFacesComponent,
   ],
   imports: [
     BrowserModule,

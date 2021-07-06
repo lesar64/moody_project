@@ -1,7 +1,10 @@
 <h2 class="analytics__title">Analytics</h2>
 
-<h3 class="analytics__average" [innerHTML]="averageValue"></h3>
-
-<button class="btn"(click)="getDat"> Download</button>
+<h3 class="analytics__average">
+  <span>Average Score: </span>
+  <span [innerHTML]="averageValue"></span>
+</h3>
 
 <app-emotion-rollercoaster [values]="faceDetection.detections" class="analytics__rollercoaster"></app-emotion-rollercoaster>
+
+<button class="analytics__download" (click)="getDat">Download</button>

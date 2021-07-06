@@ -1,0 +1,15 @@
+<h3 class="groupflow__title">Groupflow</h3>
+<p class="groupflow__value"><b>&#963;</b> = {{ sdFormatted }}</p>
+
+<div class="groupflow">
+  <div class="groupflow__bar">
+    <div class="groupflow__sd"
+         [class.groupflow__sd--warn]="isWarning" 
+         [style.width]="this.width || 0"></div>
+  </div>
+
+  <div class="groupflow__labels">
+    <p>No Group Flow</p>
+    <p>Complete Group Flow</p>
+  </div>
+</div>

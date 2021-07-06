@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { CategoryScale, Chart, Legend, LinearScale, LineController, LineElement, PointElement, TimeScale, TimeSeriesScale } from 'chart.js';
-import 'chartjs-adapter-moment';
+import * as ApexCharts from 'apexcharts'
+import { chartSettings } from './chart-settings';
+
 
 @Component({
   selector: 'app-emotion-rollercoaster',
@@ -12,38 +13,31 @@ export class EmotionRollercoasterComponent implements AfterViewInit {
   @ViewChild('canvas') public canvas: ElementRef;
 
   @Input() values: { timestamp: number, value: number }[] = [];
-  public chart?: Chart;
 
-  constructor() {
-    Chart.register(LinearScale, LineElement, LineController, PointElement, CategoryScale, TimeSeriesScale, TimeScale, Legend);
+  public MAX_CANDLESTICKS = 50;
+
+  public get mappedValues(): { timestamp: number, values: number[] }[] {
+    const mapped: { timestamp: number, values: number[] }[] = [];
+    let steps = Math.floor(this.values.length / this.MAX_CANDLESTICKS);
+    if (steps == 0){
+      steps = 1
+    }
+    for (let i = 0; i < this.values.length; i += steps) {
+      mapped.push({
+        timestamp: this.values[i].timestamp,
+        values: this.values.slice(i, i + steps).map(v => v.value)
+      });
+    }
+
+    return mapped;
   }
 
+  constructor() { }
+
   ngAfterViewInit(): void {
-    this.chart = new Chart(this.canvas.nativeElement.getContext('2d'), {
-      type: 'line',
-      data: {
-        labels: this.values?.map(value => value.timestamp) || [],
-        datasets: [{
-          label: 'Angry',
-          data: this.values?.map(value => value.value) || [],
-          fill: false,
-          borderColor: 'white',
-          tension: 0.1,
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            min: -1,
-            max: 1,
-          },
-          x: {
-            type: 'timeseries',
-          }
-        },
-        plugins: { legend: { display: false } }
-      }
-    });
+    const options = chartSettings(this.mappedValues);
+    const chart = new ApexCharts(this.canvas.nativeElement, options);
+    chart.render();
   }
 
 }

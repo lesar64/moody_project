@@ -4,7 +4,9 @@
   height: 100%;
 }
 mat-drawer {
-  width: 350px;
+  width: 13rem;
+  background-color: #38393c; /* #38393c, #4e4f52 */
+
 }
 
 mat-drawer-container {
@@ -33,7 +35,10 @@ mat-drawer-container {
   &__body {
     display: flex;
     height: calc(100vh - 3rem);
+    //resize: none;
     width: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
 
     align-items: center;
     justify-content: center;

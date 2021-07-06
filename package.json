@@ -26,6 +26,7 @@
     "angularjs-gauge": "^2.2.0",
     "chart.js": "^3.3.0",
     "chartjs-adapter-moment": "^1.0.0",
+    "apexcharts": "^3.26.3",
     "face-api.js": "^0.22.2",
     "file-saver": "^2.0.5",
     "gauge": "^3.0.0",

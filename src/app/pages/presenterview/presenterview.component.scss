@@ -28,19 +28,34 @@
   // margin-bottom: 18%;
 }
 
+.parent {
+  text-align: center;
+}
+
 .warnings{
   // height: 100px;
-  margin-left:300px;
-  margin-right:300px;
+  //margin-left:300px;
+  //margin-right:300px;
+  //width: auto;
+  max-width: 60vw;
   border-radius: 30px;
   color: white;
-  display:flex;
-  display: -webkit-flex;
-  font-size: 40px;
+  //display: flex;
+  display: inline-block;
+  //display: -webkit-flex;
+  font-size: 2rem;
   vertical-align: middle;
+  border-style: solid;
+  border-width: 4px;
+
+  //display: flex;
+  //justify-content: center;
+  //align-items: center;
 }
 
 .text-warning{
   text-align: center;
-  margin: auto;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  //margin: auto;
 }

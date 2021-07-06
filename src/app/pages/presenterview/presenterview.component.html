@@ -1,12 +1,12 @@
 
-<div>
+<div class="parent">
   <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="center">
     <div fxLayoutAlign="center">
       <app-happy-barometer fxFlexAlign="center" label="Peak" [value]="peakIndicator" orangeThreshold=25 greenThreshold=33></app-happy-barometer>
     </div>
 
     <div fxLayoutAlign="center">
-      <app-happy-barometer fxFlexAlign="center" label="GroupFlow" [value]="groupflowIndicator" orangeThreshold=50 greenThreshold=67></app-happy-barometer>
+      <app-happy-barometer fxFlexAlign="center" label="GroupFlow" [value]="groupFlowIndicator" orangeThreshold=50 greenThreshold=67></app-happy-barometer>
     </div>
 
     <div fxLayoutAlign="center">
@@ -16,7 +16,7 @@
 
   <br>
 
-  <div class="warnings" style="background-color:{{warningColor}}">
+  <div class="warnings" [style.border-color]="warningColor">
     <div class="text-warning">{{warningText}}</div>
   </div>
 </div>

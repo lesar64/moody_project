@@ -1,9 +1,10 @@
-import {Component, OnDestroy, OnInit, ElementRef, Input, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
-import {Subject} from 'rxjs';
-import {filter, map, tap, scan, take, takeUntil} from 'rxjs/operators';
-import {ScreenRecorderService} from 'src/app/services/screen-recorder.service';
-import 'chartjs-adapter-moment';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { filter, first, map, scan, takeUntil} from 'rxjs/operators';
+import { mapIndividualScore, scanMovingAverage } from 'src/app/services/helper.functions';
+import { ScreenRecorderService } from 'src/app/services/screen-recorder.service';
+import { mean, std, max, min } from 'mathjs';
 
 @Component({
   selector: 'app-mood-barometer',
@@ -13,36 +14,40 @@ import 'chartjs-adapter-moment';
 
 export class MoodBarometerComponent implements OnInit, OnDestroy {
 
-  static MOVING_AVERAGE_NUMBER = 10;
-
   public averageValue$ = this.screenRecorder.faceDetections$.pipe(
     // Calculate score per person
-    map((detections) => detections.map((detection) => {
-      return (detection as any).aggregated.positive - (detection as any).aggregated.negative;
-    })),
-
+    map((detections) => detections.map(mapIndividualScore)),
+    filter(d => !!d?.length),
     // Calculate mean of all people
-    map(arr => arr.reduce((acc, current) => acc + current, 0) / arr.length),
-
+    map(v => mean(v)),
     // Moving values for the next 10 occurences
-    scan((acc, curr) => {
-      if (!curr) {
-        return acc;
-      }
-
-      acc.push(curr);
-
-      if (acc.length > MoodBarometerComponent.MOVING_AVERAGE_NUMBER) {
-        acc.shift();
-      }
-
-      return acc;
-    }, []),
-
+    scan(scanMovingAverage(10), []),
     // Calculate moving average
-    map(arr => arr.reduce((acc, current) => acc + current, 0) / arr.length),
+    map(v =>  mean(v)),
   );
-  // Test StandardDeviation MoodyScore
+
+  public standardDeviation$ = this.screenRecorder.faceDetections$.pipe(
+    // Calculate score per person
+    map((detections) => detections.map(mapIndividualScore)),
+    filter(d => !!d?.length),
+    // Calculate standard deviation of all people
+    map(v => std(v)),
+    // Moving values for the next 10 occurences
+    scan(scanMovingAverage(5), []),
+    // // Calculate moving average
+    map(v => mean(v)),
+  );
+
+  public moodChanges$ = this.screenRecorder.faceDetections$.pipe(
+    map((detections) => detections.map(mapIndividualScore)),
+    filter(d => !!d?.length),
+    map(v => mean(v)),
+    scan(scanMovingAverage(10), []),
+    map(v =>  mean(v)),
+    scan(scanMovingAverage(4), []),
+    map((values) => max(values) - min(values)),
+    map((diff) => diff > 0.25),
+  )
 
   private ngUnsubscribe: Subject<boolean> = new Subject();
 
@@ -65,11 +70,11 @@ export class MoodBarometerComponent implements OnInit, OnDestroy {
       return;
     }
     this.screenRecorder.record$
-      .pipe(
-        filter(record => record.type === 'stop'),
-        takeUntil(this.ngUnsubscribe),
-        take(1),
-      ).subscribe(this.onFinishRecording.bind(this));
+    .pipe(
+      filter(record => record.type === 'stop'),
+      takeUntil(this.ngUnsubscribe),
+      first(),
+    ).subscribe(this.onFinishRecording.bind(this));
   }
 
   private navigateToHome(): void {
@@ -77,6 +82,7 @@ export class MoodBarometerComponent implements OnInit, OnDestroy {
   }
 
   private onFinishRecording(): void {
+    console.log('onFinishRecording')
     this.router.navigateByUrl('analytics');
   }
 

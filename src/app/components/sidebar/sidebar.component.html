@@ -1,33 +1,43 @@
 <mat-nav-list>
-    <div class="profile-card">
-        <div class="header">
-            <h2>Moody Dashboard</h2>
-        </div>
-        <mat-icon class="insights" >insights</mat-icon>
-    </div>
+  <div class="sidebar">
+  <!--    <div class="profile-card">-->
+  <!--        <div class="header">-->
+  <!--            <h2>Moody Dashboard</h2>-->
+  <!--        </div>-->
+  <!--        <mat-icon class="insights" >insights</mat-icon>-->
+  <!--    </div>-->
 
-    <mat-divider></mat-divider>
+  <!--    <mat-divider></mat-divider>-->
 
-    <h2 matSubheader>Pages</h2>
+      <h2 class="title" matSubheader>Pages</h2>
 
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">Home</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/presenterview">Presenterview</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/pie-chart">Pie-Chart</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/barometer">Mood-Barometer</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/analytics">Analytics</a>
+      <div class="text">
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/">Home</a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/presenterview">Presenterview</a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/pie-chart">Pie-Chart</a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/barometer">Mood-Barometer</a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/analytics">Analytics</a><a mat-list-item routerLinkActive="list-item-active" routerLink="/all-faces">All-Faces</a>
+      </div>
 
-    <mat-divider></mat-divider>
+      <mat-divider style="color: #45a29e;"></mat-divider>
 
-    <h2 matSubheader>Tools</h2>
+      <h2 class="title" matSubheader>Tools</h2>
 
-    <a mat-list-item routerLinkActive="list-item-active" role="button" (click)="start()">
-        <mat-icon>play_arrow</mat-icon>
-        Start Recoding
+      <div class="text">
+      <a mat-list-item routerLinkActive="list-item-active" role="button" (click)="start()">
+          <mat-icon style="color: #45a29e;">play_arrow</mat-icon>
+          Start Recoding
+      </a>
+
+      <a mat-list-item routerLinkActive="list-item-active" role="button" (click)="stop()">
+          <mat-icon style="color: #45a29e;">stop</mat-icon>
+          Stop Recording
+      </a>
+
+      <a mat-list-item routerLinkActive="list-item-active" role="button" (click)="download()">
+        <mat-icon style="color: #45a29e;">save</mat-icon>
+        Download
     </a>
-
-    <a mat-list-item routerLinkActive="list-item-active" role="button" (click)="stop()">
-        <mat-icon>stop</mat-icon>
-        Stop Recording
-    </a>
-
+      </div>
+  </div>
 </mat-nav-list>
