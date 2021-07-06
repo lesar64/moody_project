@@ -1,0 +1,31 @@
+
+:host {
+  display: block;
+  margin-top: 4rem;
+}
+
+.active-emotion {
+  &__table {
+    color: #c5c6c7;
+    width: 100%;
+    margin-top: 3rem;
+  }
+}
+
+.emotions {
+  &__title {
+    color: #45a29e;
+    font-size: 5rem;
+  }
+
+  &__description {
+    color: #c5c6c7;
+    max-width: 45rem;
+    margin-top: 1.5rem;
+    line-height: 1.5rem;
+  }
+
+  &__button {
+    margin-top: 2rem;
+  }
+}
