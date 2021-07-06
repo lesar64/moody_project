@@ -29,7 +29,7 @@ export class PresenterviewComponent implements OnInit, OnDestroy {
 
   public happiness?: number;
 
-  private mean_happiness$ = this.dashboard.mean_happy.subscribe(
+  private happiness$ = this.dashboard.mean_happy.subscribe(
     (value) => {
       this.happiness = value;
       // console.log("Value of the Happiness: " + value)

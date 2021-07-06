@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { zip, combineLatest, interval } from 'rxjs';
-import { map, scan, share, tap, takeLast, withLatestFrom, sample } from 'rxjs/operators';
+import { map, scan, share, tap, takeLast, withLatestFrom, sample, takeUntil, skip } from 'rxjs/operators';
 import { ScreenRecorderService } from './screen-recorder.service';
 
 @Injectable({
@@ -398,28 +398,28 @@ export class DashboardService {
     share()
   )
 
-  private gFObservables = [this.mean_happy, this.std_happy,
-    this.mean_surprised, this.std_surprised,
-    this.mean_neutral, this.std_neutral,
-    this.mean_sad, this.std_sad,
-    this.mean_angry, this.std_angry,
-    this.mean_fearful, this.std_fearful,
-    this.mean_disgusted, this.std_disgusted]
+  // private gFObservables = [this.mean_happy, this.std_happy,
+  //   this.mean_surprised, this.std_surprised,
+  //   this.mean_neutral, this.std_neutral,
+  //   this.mean_sad, this.std_sad,
+  //   this.mean_angry, this.std_angry,
+  //   this.mean_fearful, this.std_fearful,
+  //   this.mean_disgusted, this.std_disgusted]
 
-  public groupFlowIndicator$ = combineLatest(this.gFObservables).pipe(
-    map(([mean_happy, std_happy, mean_surprised, std_surprised,
-      mean_neutral, std_neutral, mean_sad, std_sad,
-      mean_angry, std_angry, mean_fearful, std_fearful,
-      mean_disgusted, std_disgusted]) => {
-        let gF = ((1 - std_happy) * mean_happy) + ((1 - std_surprised) * mean_surprised) +
-          ((1 - std_neutral) * mean_neutral) + ((1 - std_sad) * mean_sad) +
-          ((1 - std_angry) * mean_angry) + ((1 - std_fearful) * mean_fearful) +
-          ((1 - std_disgusted) * mean_disgusted);
+  // public groupFlowIndicator$ = combineLatest(this.gFObservables).pipe(
+  //   map(([mean_happy, std_happy, mean_surprised, std_surprised,
+  //     mean_neutral, std_neutral, mean_sad, std_sad,
+  //     mean_angry, std_angry, mean_fearful, std_fearful,
+  //     mean_disgusted, std_disgusted]) => {
+  //       let gF = ((1 - std_happy) * mean_happy) + ((1 - std_surprised) * mean_surprised) +
+  //         ((1 - std_neutral) * mean_neutral) + ((1 - std_sad) * mean_sad) +
+  //         ((1 - std_angry) * mean_angry) + ((1 - std_fearful) * mean_fearful) +
+  //         ((1 - std_disgusted) * mean_disgusted);
 
-        return Math.round(gF * 100) / 100;
-      }
-    ),
-  )
+  //       return Math.round(gF * 100) / 100;
+  //     }
+  //   ),
+  // )
 
   public groupFlowIndicatorLatest$ = interval(1000).pipe(
     withLatestFrom(this.mean_happy, this.std_happy,
@@ -449,41 +449,43 @@ export class DashboardService {
       }))
     ),
 
-    // tap(() => (
-    //   console.log(this.groupFlow)
-    // ))
+    takeUntil(this.screenRecorder.record$.pipe(skip(1))),
+
+    tap(() => (
+      console.log(this.groupFlow)
+    ))
   )
 
-  private peakObservables = [this.moving_std_happy,
-    this.moving_std_surprised,
-    this.moving_std_neutral,
-    this.moving_std_sad,
-    this.moving_std_angry,
-    this.moving_std_fearful,
-    this.moving_std_disgusted]
+  // private peakObservables = [this.moving_std_happy,
+  //   this.moving_std_surprised,
+  //   this.moving_std_neutral,
+  //   this.moving_std_sad,
+  //   this.moving_std_angry,
+  //   this.moving_std_fearful,
+  //   this.moving_std_disgusted]
 
-  public peakIndicator$ = combineLatest(this.peakObservables).pipe(
-    map(([moving_std_happy, moving_std_surprised,
-      moving_std_neutral, moving_std_sad,
-      moving_std_angry, moving_std_fearful,
-      moving_std_disgusted]) => {
-        let p = moving_std_happy + moving_std_surprised +
-          moving_std_neutral + moving_std_sad +
-          moving_std_angry + moving_std_fearful +
-          moving_std_disgusted;
-        let max_norm = 1;
-        let min_norm = 0;
-        let max = 1.5;
-        let min = 0;
+  // public peakIndicator$ = combineLatest(this.peakObservables).pipe(
+  //   map(([moving_std_happy, moving_std_surprised,
+  //     moving_std_neutral, moving_std_sad,
+  //     moving_std_angry, moving_std_fearful,
+  //     moving_std_disgusted]) => {
+  //       let p = moving_std_happy + moving_std_surprised +
+  //         moving_std_neutral + moving_std_sad +
+  //         moving_std_angry + moving_std_fearful +
+  //         moving_std_disgusted;
+  //       let max_norm = 1;
+  //       let min_norm = 0;
+  //       let max = 1.5;
+  //       let min = 0;
 
-        let peakIndicator = (p - min) * ((max_norm - min_norm) / (max - min)) + min_norm;
+  //       let peakIndicator = (p - min) * ((max_norm - min_norm) / (max - min)) + min_norm;
 
-        // console.log("Value of the peak Indicator: " + peakIndicator)
+  //       // console.log("Value of the peak Indicator: " + peakIndicator)
 
-        return Math.round(peakIndicator * 100) / 100;
-      }
-    ),
-  )
+  //       return Math.round(peakIndicator * 100) / 100;
+  //     }
+  //   ),
+  // )
 
   public peakIndicatorLatest$ = interval(1000).pipe(
     withLatestFrom(this.moving_std_happy,
@@ -509,8 +511,6 @@ export class DashboardService {
 
         let peakIndicator = (p - min) * ((max_norm - min_norm) / (max - min)) + min_norm;
 
-        // console.log("Value of the peak Indicator Latest: " + peakIndicator)
-
         return Math.round(peakIndicator * 100) / 100;
       }
     ),
@@ -521,9 +521,11 @@ export class DashboardService {
       }))
     ),
 
-    // tap(() => (
-    //   console.log(this.peak)
-    // ))
+    takeUntil(this.screenRecorder.record$.pipe(skip(1))),
+
+    tap(() => (
+      console.log(this.peak)
+    ))
   )
 
 }
