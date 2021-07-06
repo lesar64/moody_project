@@ -45,7 +45,7 @@ import { AllFacesComponent } from './pages/all-faces/all-faces.component';
     HappyBarometerComponent,
     PieChartComponent,
     SidebarComponent,
-    AllFacesComponent
+    AllFacesComponent,
   ],
   imports: [
     BrowserModule,

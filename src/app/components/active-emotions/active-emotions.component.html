@@ -6,8 +6,8 @@
   <tr *ngFor="let detection of faceDetections; let i = index">
     <td>
       <app-video-capture [videoRef]="videoRef"
-                         [width]="detection?.detection?.box?.width"
-                         [height]="detection?.detection?.box?.height"
+                         [width]="100"
+                         [height]="100"
                          [xMin]="detection?.detection?.box?.left"
                          [yMin]="detection?.detection?.box?.top"></app-video-capture>
       <p>Person {{ i + 1 }}</p>
