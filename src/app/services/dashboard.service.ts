@@ -451,9 +451,9 @@ export class DashboardService {
 
     takeUntil(this.screenRecorder.record$.pipe(skip(1))),
 
-    tap(() => (
-      console.log(this.groupFlow)
-    ))
+    // tap(() => (
+    //   console.log(this.groupFlow)
+    // ))
   )
 
   // private peakObservables = [this.moving_std_happy,
@@ -523,9 +523,9 @@ export class DashboardService {
 
     takeUntil(this.screenRecorder.record$.pipe(skip(1))),
 
-    tap(() => (
-      console.log(this.peak)
-    ))
+    // tap(() => (
+    //   console.log(this.peak)
+    // ))
   )
 
 }
