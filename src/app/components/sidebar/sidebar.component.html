@@ -21,17 +21,22 @@
 
       <mat-divider style="color: #45a29e;"></mat-divider>
 
-      <h2 class="title" matSubheader>Tools</h2>
+      <h2 class="title" matSubheader> Recording </h2>
 
       <div class="text">
       <a mat-list-item routerLinkActive="list-item-active" role="button" (click)="start()">
           <mat-icon style="color: #45a29e;">play_arrow</mat-icon>
-          Start Recoding
+          Start
       </a>
 
       <a mat-list-item routerLinkActive="list-item-active" role="button" (click)="stop()">
           <mat-icon style="color: #45a29e;">stop</mat-icon>
-          Stop Recording
+          Stop
+      </a>
+
+      <a mat-list-item routerLinkActive="list-item-active" role="button" (click)="reset()">
+          <mat-icon style="color: #45a29e;">restart_alt</mat-icon>
+          Reset
       </a>
 
       <a mat-list-item routerLinkActive="list-item-active" role="button" (click)="download()">

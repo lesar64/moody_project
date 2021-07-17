@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { ScreenRecorderService } from 'src/app/services/screen-recorder.service';
+import { FaceDetectionService } from 'src/app/services/face-detection.service';
 import * as fileSaver from 'file-saver';
 
 @Component({
@@ -12,6 +13,7 @@ import * as fileSaver from 'file-saver';
 export class SidebarComponent implements OnInit {
 
   constructor(private screenRecorder: ScreenRecorderService,
+    public faceDetection: FaceDetectionService,
     private dashboard: DashboardService,
     private router: Router) { }
 
@@ -33,6 +35,14 @@ export class SidebarComponent implements OnInit {
     this.screenRecorder.stopRecording().then(() => {
       this.router.navigateByUrl('analytics');
     });
+  }
+
+  reset(): void {
+    // console.log("Reset button was pressed.")
+
+    this.faceDetection.detections = [];
+    // this.dashboard.happy = [];
+
   }
 
   download(): number | undefined {
