@@ -21,16 +21,19 @@
             <li>
                 <!-- <img class="header__home" [routerLink]="''" src="assets/home_grey.svg" > -->
             </li>
-            <li>
-              <button mat-icon-button>
-                <mat-icon>help_outline</mat-icon>
-              </button>
-            </li>
-            <li>
-                <button mat-icon-button>
-                    <mat-icon>settings</mat-icon>
-                </button>
-            </li>
+          <li>
+            <div *ngIf=active class="faces_counter">{{faces_counter}} Faces</div>
+          </li>
+<!--            <li>-->
+<!--              <button mat-icon-button>-->
+<!--                <mat-icon>help_outline</mat-icon>-->
+<!--              </button>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <button mat-icon-button>-->
+<!--                    <mat-icon>settings</mat-icon>-->
+<!--                </button>-->
+<!--            </li>-->
             <!-- <li>
                 <button mat-button [matMenuTriggerFor]="menu">
                     <mat-icon>person_outline</mat-icon>

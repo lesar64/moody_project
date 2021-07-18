@@ -24,6 +24,8 @@ export class ScreenRecorderService {
 
   private videoRef?: ElementRef;
 
+  public active: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
   constructor(private faceDetection: FaceDetectionService) { }
 
   public registerVideo(videoRef: ElementRef): void {
@@ -32,6 +34,8 @@ export class ScreenRecorderService {
 
   public async startRecording(): Promise<void> {
     if (!this.videoRef) { return; }
+
+    this.active.next(true);
 
     this.videoRef.nativeElement.srcObject = await (navigator.mediaDevices as any).getDisplayMedia({
       audio: false,
@@ -48,6 +52,7 @@ export class ScreenRecorderService {
   public stopRecording(): Promise<void> {
     if (!this.videoRef) { return; }
 
+    this.active.next(false);
     const tracks = this.videoRef.nativeElement.srcObject.getTracks();
     tracks.forEach(track => track.stop());
 
