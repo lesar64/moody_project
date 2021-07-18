@@ -1,10 +1,38 @@
 <h2 class="analytics__title">Analytics</h2>
 
-<h3 class="analytics__average">
-  <span>Average Score: </span>
-  <span [innerHTML]="averageValue"></span>
-</h3>
-
-<app-emotion-rollercoaster [values]="faceDetection.detections" class="analytics__rollercoaster"></app-emotion-rollercoaster>
+<div fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <app-emotion-rollercoaster [values]="faceDetection.detections" class="analytics__rollercoaster"></app-emotion-rollercoaster>
+</div>
 
 <button class="analytics__download" (click)="getDat">Download</button>
+
+<br>
+
+<h3 class="analytics__average">
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div fxFlex="20%">
+      <mat-card class="card">
+        <span>Average Moody Score: </span>
+        <span [innerHTML]="averageValue"></span>
+      </mat-card>
+    </div>
+    <div fxFlex="20%">
+      <mat-card class="card">
+        <span>Peak Indicator: </span>
+        <span [innerHTML]="avgPeak"></span>
+      </mat-card>  
+    </div>
+    <div fxFlex="20%">
+      <mat-card class="card">
+        <span>GroupFlow Indicator: </span>
+        <span [innerHTML]="avgGroupFlow"></span>
+      </mat-card> 
+    </div>
+    <div fxFlex="20%">
+      <mat-card class="card">
+        <span>Average Happiness: </span>
+        <span [innerHTML]="avgHappy"></span>
+      </mat-card>
+    </div>
+  </div>
+</h3>
