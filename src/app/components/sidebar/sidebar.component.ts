@@ -41,6 +41,16 @@ export class SidebarComponent implements OnInit {
     // console.log("Reset button was pressed.")
 
     this.faceDetection.detections = [];
+
+    this.screenRecorder.stopRecording()
+    this.screenRecorder.startRecording()
+
+    // if (this.router.url == '/analytics'){
+    //   this.router.navigateByUrl('presenterview')
+    //   this.router.navigateByUrl('analytics');
+    // }else {
+    //   this.router.navigateByUrl('analytics');
+    // }
     // this.dashboard.happy = [];
 
   }
