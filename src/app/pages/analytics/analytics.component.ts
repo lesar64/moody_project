@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FaceDetectionService } from 'src/app/services/face-detection.service';
+import { DashboardService } from 'src/app/services/dashboard.service';
 import * as fileSaver from 'file-saver';
 
 @Component({
@@ -20,7 +21,38 @@ export class AnalyticsComponent implements OnInit {
     return Math.round(average * 100) / 100;
   }
 
+  public get avgGroupFlow(): number | undefined {
+    if (!this.dashboard.groupFlow?.length) { return undefined; }
+
+    const average = this.dashboard.groupFlow
+              ?.map(value => value.value)
+              .reduce((acc, current) => acc + current, 0) / this.dashboard.groupFlow?.length
+
+    return Math.round(average * 100) / 100;
+  }
+
+  public get avgPeak(): number | undefined {
+    if (!this.dashboard.peak?.length) { return undefined; }
+
+    const average = this.dashboard.peak
+              ?.map(value => value.value)
+              .reduce((acc, current) => acc + current, 0) / this.dashboard.peak?.length
+
+    return Math.round(average * 100) / 100;
+  }
+
+  public get avgHappy(): number | undefined {
+    if (!this.dashboard.happy?.length) { return undefined; }
+
+    const average = this.dashboard.happy
+              ?.map(value => value.value)
+              .reduce((acc, current) => acc + current, 0) / this.dashboard.peak?.length
+
+    return Math.round(average * 100) / 100;
+  }
+
   constructor(public faceDetection: FaceDetectionService,
+              public dashboard: DashboardService,
               private router: Router) { }
 
   ngOnInit(): void {
