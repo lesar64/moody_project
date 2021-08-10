@@ -131,7 +131,7 @@ export class PresenterviewComponent implements OnInit, OnDestroy {
                 this.warningText = 'The mood seems to decrease. Try to smile more! ';
                 this.warningColor = 'orange';
               }else{
-                this.warningText = 'Your doing a great job. Keep going!';
+                this.warningText = 'You are doing a great job. Keep going!';
                 this.warningColor = 'white';
               }
               }
